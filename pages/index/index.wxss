@@ -1,0 +1,45 @@
+/**index.wxss**/
+page{
+  height: 100%;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  background: no-repeat url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586187726353&di=ba340cb58e62c50357ffa550c0bae14b&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201803%2F31%2F20180331214208_2Rkuh.png');
+  background-size: 100% 100%;
+} 
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo
+{
+  width: 128rpx;
+  height: 128rpx;
+
+}
+.passenger{
+  font-size: 50rpx;
+  font-weight: bold;
+  color: #404040;
+}
+.usermotto {
+  font-size: 25rpx;
+  font-weight: bold;
+  color: #404040;
+}
+
+.beginbutton{
+  width: 300rpx;
+  margin-top: 250rpx;
+  background-color: #36cfc9;
+  color: white;
+  font-weight: normal;
+  border-radius: 40rpx;
+}

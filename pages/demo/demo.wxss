@@ -1,0 +1,225 @@
+/**index.wxss**/
+page{
+  height: 100%;
+  width: 100%;
+  background-color: #f7f7f7;
+}
+.container {
+  height: 100%;
+  position: absolute;
+  background: url(https://www.liuxiu.xyz:8080/demoimage?demoback.jpg) center no-repeat;
+  background-size: 100% 100%;
+
+}
+.userinfo{
+  position: relative;
+  width: 100rpx;
+  height: 100rpx;
+  margin: 35rpx 0 0 626rpx;
+  border-radius: 50%;
+}
+.demotitle{
+  position: relative;
+  top:500rpx;
+  margin: 20rpx;
+  font-size: 45rpx;
+  color: white;
+}
+.innter{
+  position: relative;
+  top:700rpx;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.search{
+  height: 96rpx;
+  display: flex;
+}
+.search input{
+  background-color: white;
+  height: 100%;
+  width: 500rpx;
+  color: #36cfc9;
+  font-weight: normal;
+  border-bottom-right-radius: 48rpx;
+  border-top-right-radius:48rpx; 
+  padding-left: 20rpx;
+}
+.search button{
+  height: 100%;
+  border-top-left-radius: 48rpx;
+  border-bottom-left-radius: 48rpx;
+  border-bottom-right-radius: 0rpx;
+  border-top-right-radius:0rpx; 
+  background-image:url(https://www.liuxiu.xyz:8080/demoimage?search.png);
+  background-size: 70% 70%;
+  background-repeat: no-repeat;
+  background-position:center;
+}
+.poptxt{
+  position: relative;
+  margin-top: 100rpx;
+  margin-right: 430rpx;
+  margin-bottom: 20rpx;
+  color: #333;
+  font-weight: bold;
+  font-size:35rpx;
+}
+.scroll-box-pop{
+  white-space: nowrap;
+  height: 240rpx;
+}
+.card-box-pop{
+  display: inline-block;
+}
+.pop-card{
+  height: 220rpx;
+  width: 400rpx;
+  margin-left: 43rpx;
+  background: url(https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1967687861,473581986&fm=11&gp=0.jpg);
+  background-size: 100%;
+  border-radius: 10px;
+}
+.pop-like{
+  display: flex;
+  flex-direction: row;
+}
+.heart_full{
+  width: 56rpx;
+  height: 56rpx;
+  background-image: url(https://www.liuxiu.xyz:8080/demoimage?heart_full.png)
+}
+.heart{
+    width: 56rpx;
+  height: 56rpx;
+  background-image: url(https://www.liuxiu.xyz:8080/demoimage?heart.png)
+}
+.pop-navigator{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 10px;
+  height: 100%;
+  width: 100%;
+}
+.pop-card text{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 60rpx;
+  margin-left: 10rpx;
+  color: white;
+  font-weight: bold;
+  font-size: 30rpx;
+}
+.pad{
+  flex:1;
+}
+.footer{
+  position: absolute;
+  top:1400rpx;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.newtxt{
+  position: relative;
+  margin-top: 100rpx;
+  margin-right: 520rpx;
+  margin-bottom: 20rpx;
+  color: #333;
+  font-weight: bold;
+  font-size:35rpx;
+}
+.scroll-box-new{
+  display: block;
+}
+
+.cardImg{
+  margin-right: 20rpx;
+  border-radius: 10px;
+  height: 100%;
+  width: 40%;
+  border-bottom-right-radius: 0rpx;
+  border-top-right-radius:0rpx; 
+}
+.new-card{
+  flex-direction: row;
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 10px;
+  height:280rpx;
+  width: 670rpx;
+  margin-bottom: 20rpx;
+
+}
+.new-navigator{
+  box-sizing: border-box;
+  height: 100%;
+  justify-content: space-around;
+  width: 60%;
+  display: flex;
+  border-radius: 10px;
+}
+.newdetail{
+  justify-content: space-around;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.newtitle{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 35rpx;
+}
+.detailcon{
+  justify-self: center;
+  display: flex;
+  flex-direction: row;
+}
+.authorHeadImg{
+  display: block;
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+}
+.authorName{
+  margin-top: 14rpx;
+  font-size: 28rpx;
+  color: #555;
+}
+.heartIcon{
+  width: 56rpx;
+  height: 56rpx;
+}
+.detailfoot{
+  justify-content: center;
+  width: 100%;
+  font-size: 28rpx;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20rpx;
+}
+.audience{
+  color: #555;
+  display: inline-flex;
+}
+.messageIcon{
+  
+  width: 35rpx;
+  height: 40rpx;
+}
+
+.eyeIcon{
+  width: 35rpx;
+  height: 40rpx;
+}
+.tall{
+  color: #555;
+}
