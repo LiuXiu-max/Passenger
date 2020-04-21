@@ -1,0 +1,51 @@
+@url=http://localhost:3000/api
+@ctjson=Content-Type: application/json
+
+###
+get {{url}}
+
+###
+post {{url}}/register
+{{ctjson}}
+
+{
+    "username":"123ad",
+    "psd":"123a"
+}
+
+
+###
+post {{url}}/user_history
+{{ctjson}}
+
+{
+    "userid":"1",
+    "tripid":"123"
+}
+
+###
+post {{url}}/login
+{{ctjson}}
+
+{
+    "username":"ad",
+    "psd":"1233"
+}
+
+###
+get {{url}}/historylist/1/0/-1
+
+###
+get {{url}}/tripslist/1/0/5
+
+###
+get {{url}}/search/游/0/10
+
+###
+post {{url}}/addlike
+{{ctjson}}
+
+{
+    "userid":"1",
+    "tripid":"31277605"
+}
