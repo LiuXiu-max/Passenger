@@ -1,19 +1,95 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+const post_fetch = require('../../utils/post_fetch.js')
 Page({
   data: {
+    userPwd:'',
+    userName:'',
+    showModalStatus:false,
+    islogin:true,
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
+  showModel:function(){
+    var animation=wx.createAnimation({
+      duration:240,
+      timingFunction:"linear",
+      delay:0
+    });
+    this.animation=animation;
+    animation.translateY(550).step();
+    this.setData({
+      animationData:animation.export(),
+      showModalStatus:true
     })
+    setTimeout(function(){
+      animation.translateY(0).step();
+      this.setData({
+        animationData:animation.export()
+      })
+    }.bind(this),200);
+  },
+  hideModel:function(){
+    var animation = wx.createAnimation({
+      duration: 240,
+      timingFunction: "linear",
+      delay: 0
+    })
+    this.animation = animation
+    animation.translateY(550).step()
+    this.setData({
+      animationData: animation.export(),
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      this.setData({
+        animationData: animation.export(),
+        showModalStatus: false
+      })
+    }.bind(this), 200)
+  },
+  selectlogin(){
+      this.setData({islogin:true});
+    console.log(this.data.islogin);
+  },
+  selectregister(){
+      this.setData({ islogin: false });
+      console.log(this.data.islogin);
+  },
+  login(){
+    if (this.data.userName && this.data.userPwd){
+      post_fetch('login', { "username": this.data.userName, "psd": this.data.userPwd }).then(res => {
+        console.log(res.data.message)
+        if(res.data.result){
+          wx.setStorageSync("userId", res.data.data)
+            wx.switchTab({
+              url: '../demo/demo',
+            })
+        }else{
+          wx.showModal({
+            title: '出问题了',
+            content: res.data.message,
+            showCancel: false
+          })
+        }
+      })
+    }else{
+      wx.showModal({
+        title: '出问题了',
+        content: '请输入用户名和密码',
+        showCancel:false
+      })
+    }
+  },
+  userNameChanged(e){
+    this.setData({ userName: e.detail.value});
+  },
+  pwdChanged(e){
+    this.setData({userPwd:e.detail.value})
+  
   },
   onLoad: function () {
     if (app.globalData.userInfo) {
@@ -52,9 +128,9 @@ Page({
       hasUserInfo: true
     })
   },
-  todemo:function(){
+  tologin:function(){
     wx.navigateTo({
-      url: '../demo/demo'
+      url: '../login/login',
     })
   }
 })

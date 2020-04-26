@@ -1,1 +1,9 @@
 /* pages/myself/myself.wxss */
+.container{
+  width: 100%;
+  height: auto;
+}
+.head{
+  width: 100%;
+  height: 200rpx;
+}

@@ -2,9 +2,12 @@
   "pages": [
     "pages/index/index",
     "pages/myself/myself",
-    "pages/note/note",
     "pages/demo/demo",
-    "pages/searchpage/searchpage"
+    "pages/searchpage/searchpage",
+    "pages/mytrips/mytrips",
+    "pages/login/login",
+    "pages/searchlist/searchlist",
+    "pages/publish/publish"
 
   ],
   "window": {
@@ -13,6 +16,31 @@
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
-  "style": "v2",
+    "tabBar": {
+      "color": "#999",
+      "selectedColor": "#444",
+      "backgroundColor": "#fff",
+      "borderStyle": "black",
+      "list": [
+        {
+          "pagePath": "pages/demo/demo",
+          "text": "发现",
+          "iconPath": "./images/hot.png",
+          "selectedIconPath": "./images/hot-fill.png"
+        },
+        {
+          "pagePath": "pages/mytrips/mytrips",
+          "text": "旅行",
+          "iconPath": "./images/favorites.png",
+          "selectedIconPath": "./images/favorites-fill.png"
+        },
+        {
+          "pagePath": "pages/myself/myself",
+          "text": "我的",
+          "iconPath": "./images/account.png",
+          "selectedIconPath": "./images/account-fill.png"
+        }
+      ]
+    },
   "sitemapLocation": "sitemap.json"
 }

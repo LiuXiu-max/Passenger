@@ -1,0 +1,37 @@
+<view>
+  <view class="container">
+    <view class="search_head">
+      <button bindtap="go_search" class="buttonleft" />
+      <input focus="{{inputfocus}}" confirm-type="search" bindinput="inputing" bindconfirm="go_search" value="{{searchtext}}" type="text" placeholder='想看什么样的游记？'/>
+      <button bindtap="cleartext" class="buttonright" style="{{searchtext==''?'visibility:hidden;':''}}" />
+    </view>
+    <view class="filer">
+      <view class="filer_head">
+        <view bindtap="tapdate" class="{{filer_tag[0]?'selected':''}}">最新发布</view>|<view bindtap="tappop" class="{{filer_tag[1]?'selected':''}}">最受欢迎</view>|<view bindtap="tapview" class="{{filer_tag[2]?'selected':''}}">浏览最多</view>
+      </view>
+    </view>
+    <view wx:if="{{listtag}}" class="searchbox" >
+      <view wx:for="{{searchlist}}" wx:key="id" class="searchcard">
+        <view class="cardimg" style="background-image: url({{item.picUrl}})"></view>
+        <view class="cardname">{{item.name}}</view>
+        <view class="detailfoot">
+          <view  class="itemblock">
+            <image class="dateIcon" src="https://www.liuxiu.xyz:8080/demoimage?clock-fill.png" mode="cover"/>
+            <view>{{item.publishTime}}</view>
+          </view>
+          <view class="itemblock">
+            <image class="popIcon" src="https://www.liuxiu.xyz:8080/demoimage?favorites-fill-small.png" mode="cover"/>
+            <view >{{item.likeCount}}</view>
+          </view>
+          <view class="itemblock">
+            <image class="eyeIcon" src="https://www.liuxiu.xyz:8080/demoimage?eye.png" mode="cover"/>
+            <view>{{item.viewCount}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:else>
+      没搜到~换个词试试~
+    </view>
+  </view>
+</view>

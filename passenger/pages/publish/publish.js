@@ -1,4 +1,4 @@
-// pages/note/note.js
+// pages/publish/publish.js
 Page({
 
   /**

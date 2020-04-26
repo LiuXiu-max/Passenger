@@ -25,7 +25,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.10.4",
 	"appid": "wx04781249352ad5ab",
-	"projectname": "Passenger1.0",
+	"projectname": "passenger",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -60,6 +60,48 @@
 					"id": -1,
 					"name": "demo",
 					"pathName": "pages/demo/demo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "login",
+					"pathName": "pages/login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "searchpage",
+					"pathName": "pages/searchpage/searchpage",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "searchlist",
+					"pathName": "pages/searchlist/searchlist",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "mytrips",
+					"pathName": "pages/mytrips/mytrips",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "myself",
+					"pathName": "pages/myself/myself",
 					"scene": null
 				}
 			]

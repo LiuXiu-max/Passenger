@@ -1,2 +1,19 @@
-<!--pages/searchpage/searchpage.wxml-->
-<text>pages/searchpage/searchpage.wxml</text>
+<view>
+  <view class="container">
+    <view class="search_head">
+      <button bindtap="go_search" class="buttonleft" />
+      <input focus="{{inputfocus}}" confirm-type="search" bindinput="inputing" bindconfirm="go_search" value="{{searchtext}}" type="text" placeholder='想看什么样的游记？'/>
+      <button bindtap="cleartext" class="buttonright" style="{{searchtext==''?'visibility:hidden;':''}}" />
+    </view>
+    <view class="search_history">
+      <view class="history_head">
+        <view class="">搜索历史</view>|<view bindtap="delall_history" class="delall_history">删除全部</view>
+      </view>
+      <view class="history_list" wx:key="id" wx:for="{{search_history_list}}">
+        <view class="history_item">
+          <view data-text="{{item}}" bindtap="taphistory" class="item_text">{{item}}</view><icon iconColor="purple" class="cancel_icon" size="25" type="clear" bindtap="del_history" data-index="{{index}}"></icon>
+          </view>
+      </view>
+    </view>
+  </view>
+</view>

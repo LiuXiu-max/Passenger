@@ -34,9 +34,97 @@ page{
   font-weight: bold;
   color: #404040;
 }
-
+.logincard{
+  overflow: hidden;
+  z-index: 2000;
+  position: absolute;
+  top:600rpx;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 2px 0px #36cfc9;
+  height: 59%;
+  width: 100%;
+  background-color: #e7e7e7;
+  border-top-left-radius: 50rpx;
+  border-top-right-radius: 50rpx;
+}
+.inputbox{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 600rpx;
+  width: 100%;
+}
+.head{
+  margin-bottom: 40rpx;
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.head view{
+  text-align: center;
+  line-height: 80rpx;
+  width: 50%;
+  height: 100%;
+  
+}
+.login{
+  border-top-left-radius:40rpx;
+}
+.register{
+  border-top-right-radius: 40rpx; 
+}
+.untaped{
+  background-color: #36cfc9;
+}
+.taped{
+  background-color: #e7e7e7;
+}
+input{
+  color:black;
+  padding-left: 20rpx;
+  width: 60%;
+  margin-bottom: 40rpx;
+  height: 80rpx;
+  background-color: #ccc;
+  font-weight: normal;
+  border-radius: 40rpx;
+}
+.pad{
+  flex: 1;
+}
+.inputbutton{
+  white-space:wrap;
+  align-items: flex-end;
+  position: absolute;
+  top:500rpx;
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 50%;
+  background-color:#36cfc9;
+  text-align: center;
+  line-height: 110rpx;
+  font-size: 25rpx;
+  font-weight: bold;
+}
+.commodity_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+  z-index: 1000;
+  color: #fff;
+}
 .beginbutton{
-  width: 300rpx;
+  line-height: 80rpx;
+  width: 400rpx;
+  height: 80rpx;
   margin-top: 250rpx;
   background-color: #36cfc9;
   color: white;

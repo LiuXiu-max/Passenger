@@ -12,6 +12,19 @@ function gethistory(id,start,end){
             client.quit();
     })
 }
+function getlike(id){
+        let client=redis.createClient(6379,'127.0.0.1');
+        return new Promise((resolve,reject)=>{
+                client.smembers(id,function(err,data){
+                        if(err){
+                                    reject(err);
+                        }else{
+                                resolve(data);
+                        }
+                })
+                client.quit();
+        })
+    }
 function ifLike(userid,tripid){
         let client=redis.createClient(6379,'127.0.0.1');
         return new Promise((resolve,reject)=>{
@@ -38,5 +51,6 @@ function newClient(){
 module.exports={
     gethistory,
     newClient,
-    ifLike
+    ifLike,
+    getlike
 }

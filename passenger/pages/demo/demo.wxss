@@ -48,6 +48,8 @@ page{
   padding-left: 20rpx;
 }
 .search button{
+  background-color: white;
+  width: 105rpx;
   height: 100%;
   border-top-left-radius: 48rpx;
   border-bottom-left-radius: 48rpx;
@@ -57,6 +59,9 @@ page{
   background-size: 70% 70%;
   background-repeat: no-repeat;
   background-position:center;
+}
+button::after{
+  border: none;
 }
 .poptxt{
   position: relative;
@@ -69,7 +74,7 @@ page{
 }
 .scroll-box-pop{
   white-space: nowrap;
-  height: 240rpx;
+  height: 260rpx;
 }
 .card-box-pop{
   display: inline-block;
@@ -81,20 +86,39 @@ page{
   background: url(https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1967687861,473581986&fm=11&gp=0.jpg);
   background-size: 100%;
   border-radius: 10px;
+  background-position: center;
 }
 .pop-like{
   display: flex;
   flex-direction: row;
 }
+.pop_imageback{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f7f7;
+  width: 50rpx;
+  height: 50rpx;
+  border-top-right-radius: 30%;
+  border-bottom-left-radius: 30%;
+}
+.new_imageback{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f7f7;
+  width: 50rpx;
+  height: 50rpx;
+  border-top-left-radius: 30%;
+  border-bottom-right-radius: 30%;
+}
 .heart_full{
-  width: 56rpx;
-  height: 56rpx;
-  background-image: url(https://www.liuxiu.xyz:8080/demoimage?heart_full.png)
+  width: 45rpx;
+  height: 45rpx;
 }
 .heart{
-    width: 56rpx;
-  height: 56rpx;
-  background-image: url(https://www.liuxiu.xyz:8080/demoimage?heart.png)
+  width: 45rpx;
+  height: 45rpx;
 }
 .pop-navigator{
   display: flex;
@@ -109,9 +133,9 @@ page{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-top: 60rpx;
+  margin-top: 160rpx;
   margin-left: 10rpx;
-  color: white;
+  color: black;
   font-weight: bold;
   font-size: 30rpx;
 }
@@ -147,6 +171,7 @@ page{
   width: 40%;
   border-bottom-right-radius: 0rpx;
   border-top-right-radius:0rpx; 
+  background-position: center;
 }
 .new-card{
   flex-direction: row;
@@ -195,6 +220,7 @@ page{
   color: #555;
 }
 .heartIcon{
+  margin-right: 10rpx;
   width: 56rpx;
   height: 56rpx;
 }
@@ -211,10 +237,10 @@ page{
   display: inline-flex;
 }
 .messageIcon{
-  
   width: 35rpx;
   height: 40rpx;
 }
+
 
 .eyeIcon{
   width: 35rpx;
@@ -223,3 +249,4 @@ page{
 .tall{
   color: #555;
 }
+

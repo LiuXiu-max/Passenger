@@ -5,9 +5,39 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    inputfocus:false,
+    searchtext:'',
+    search_history_list:['按时撒多','安达市大所','按时发斯蒂芬','对方过后']
   },
-
+  go_search(){
+    if(this.data.searchtext){
+      wx.navigateTo({
+        url: '../searchlist/searchlist?searchtext=' + this.data.searchtext,
+      })
+    }
+  },
+  taphistory(e){
+    this.setData({ searchtext: e.target.dataset.text});
+  },
+  cleartext(){
+    this.setData({inputfocus:false},()=>{
+      this.setData({ searchtext: '' });
+    })
+  },
+  delall_history(){
+    this.setData({ search_history_list:[]})
+  },
+  del_history(e){
+    let index = e.target.dataset.index;
+    console.log(index);
+    let list=this.data.search_history_list;
+    list.splice(index,1);
+    console.log(list);
+    this.setData({search_history_list:list});
+  },
+  inputing(e){
+    this.setData({ searchtext: e.detail.value });
+  },
   /**
    * 生命周期函数--监听页面加载
    */

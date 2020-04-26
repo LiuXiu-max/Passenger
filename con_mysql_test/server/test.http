@@ -19,8 +19,8 @@ post {{url}}/user_history
 {{ctjson}}
 
 {
-    "userid":"1",
-    "tripid":"123"
+    "userid":"history_1",
+    "tripid":"31281323"
 }
 
 ###
@@ -28,18 +28,28 @@ post {{url}}/login
 {{ctjson}}
 
 {
-    "username":"ad",
-    "psd":"1233"
+    "username":"da",
+    "psd":"12"
 }
 
 ###
-get {{url}}/historylist/1/0/-1
+get {{url}}/historylist/1/0/10
 
 ###
-get {{url}}/tripslist/1/0/5
+get {{url}}/tripslist/1/0/10
 
 ###
 get {{url}}/search/游/0/10
+
+###
+get {{url}}/searchbydate/1/游/0/5
+
+###
+get {{url}}/searchbylike/1/北京/0/5
+
+###
+get {{url}}/searchbyview/1/北京/0/5
+
 
 ###
 post {{url}}/addlike
@@ -48,4 +58,21 @@ post {{url}}/addlike
 {
     "userid":"1",
     "tripid":"31277605"
+}
+
+###
+post {{url}}/dellike
+{{ctjson}}
+
+{
+    "userid":"1",
+    "tripid":"31277605"
+}
+
+###
+post {{url}}/likelist/0/5
+{{ctjson}}
+
+{
+    "id":"1"
 }

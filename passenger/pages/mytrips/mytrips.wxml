@@ -1,0 +1,36 @@
+<!--pages/mytrips/mytrips.wxml-->
+<view>
+  <view class="container">
+    <view class="head" bindtap="go_publish">
+    <button>发布游记</button>
+    </view>
+    <view class="filer">
+      <view class="filer_head">
+        <view bindtap="taphistory" class="{{filer_tag[0]?'selected':''}}">最近浏览</view>|<view bindtap="tapmytrips" class="{{filer_tag[1]?'selected':''}}">我的游记</view>|<view bindtap="taplike" class="{{filer_tag[2]?'selected':''}}">我的收藏</view>
+      </view>
+    </view>
+    <view wx:if="{{listtag}}" class="searchbox" >
+      <view wx:for="{{searchlist}}" wx:key="id" class="searchcard">
+        <view class="cardimg" style="background-image: url({{item.picUrl}})"></view>
+        <view class="cardname">{{item.name}}</view>
+        <view class="detailfoot">
+          <view  class="itemblock">
+            <image class="dateIcon" src="https://www.liuxiu.xyz:8080/demoimage?clock-fill.png" mode="cover"/>
+            <view>{{item.publishTime}}</view>
+          </view>
+          <view class="itemblock">
+            <image class="popIcon" src="https://www.liuxiu.xyz:8080/demoimage?favorites-fill-small.png" mode="cover"/>
+            <view >{{item.likeCount}}</view>
+          </view>
+          <view class="itemblock">
+            <image class="eyeIcon" src="https://www.liuxiu.xyz:8080/demoimage?eye.png" mode="cover"/>
+            <view>{{item.viewCount}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:else>
+      没搜到~换个词试试~
+    </view>
+  </view>
+</view>

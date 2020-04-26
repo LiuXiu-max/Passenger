@@ -1,2 +1,7 @@
 <!--pages/myself/myself.wxml-->
-<text>pages/myself/myself.wxml</text>
+<text class="container">
+  <view class="head">
+    <image src="{{userInfo.avatarUrl}}"/>
+    <view>{{userInfo.nickName}}</view>
+  </view>
+</text>

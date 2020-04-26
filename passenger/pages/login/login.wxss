@@ -1,0 +1,30 @@
+/* pages/login/login.wxss */
+.container{
+  position: absolute;
+  top:300rpx;
+  display: flex;
+  justify-content: center;
+}
+.logincard{
+  height: 100%;
+  width: 80%;
+  background-color: #e7e7e7;
+ 
+}
+.inputbox{
+  height: 400rpx;
+  width: 100%;
+}
+.footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.footer view{
+  width: 50%;
+  height: 50rpx;
+}
+.taped{
+  background-color: #1a2e5c;
+}

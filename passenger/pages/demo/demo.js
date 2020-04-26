@@ -7,7 +7,6 @@ Page({
   startPageX: 0,
   currentView: DEFAULT_PAGE,
   data: {
-    itemlike:"heart.png",
     pageStart:0,
     pageEnd:5,
     userInfo: {},
@@ -16,18 +15,23 @@ Page({
     list: []
   },
   tapHeart(event){
-    if (this.data.itemlike === event.target.id){
-      this.setData({ itemlike:""})
+    console.log(event.target.dataset.index);
+    const list=this.data.list;
+    if (list[event.target.dataset.index].iflike){
+      list[event.target.dataset.index].iflike = false;
+      this.setData({ list });
     }else{
-      this.setData({ itemlike: event.target.id })
+      list[event.target.dataset.index].iflike = true;
+      this.setData({ list });
     }
-    console.log(event);
+
   },
   onLoad: function () {
-    fetch('tripslist/1/' + this.data.pageStart + '/' + this.data.pageEnd).then(res=>{
+    fetch('tripslist/' + wx.getStorageSync("userId")+'/' + this.data.pageStart + '/' + this.data.pageEnd).then(res=>{
       this.setData({list:res.data.data})
       console.log(res.data.data)
     })
+    console.log(app.globalData.userInfo);
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -45,6 +49,10 @@ Page({
         }
       })
     }
+    console.log(this.data.userInfo);
+  },
+  onHide:function(){
+    console.log('demo hided')
   },
   toMyself:function(){
     wx.navigateTo({
