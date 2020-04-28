@@ -1,2 +1,16 @@
-<!--pages/publish/publish.wxml-->
-<text>pages/publish/publish.wxml</text>
+<view class="container">
+  <view class="uploadhead">
+    <button bindtap="uploadbutton" class="uploadbutton">发表</button>
+    <editor bindblur="inputing"  bindinput=""  focus="{{editorfocus}}" class="uploadinput" placeholder="这一刻的想法"></editor>
+  </view>
+  <view class="upimgbox">
+    <view wx:key='id' class="imglist" wx:for="{{imgLists}}">
+      <image data-index="{{index}}" src="{{item}}" bindtap="scopeimage" mode="aspectFill"/>
+      <view class="close" data-index="{{index}}" bindtap="delimage"></view>
+    </view>
+    <view wx:if="{{imgcount<9}}" class="addbox"  bindtap="uploadimage">
+      <image class="addimage"   src="https://www.liuxiu.xyz:8080/demoimage?add-select.png"/>
+    </view>
+  </view>
+  <view class="count">{{imgcount}}/9</view>
+</view>

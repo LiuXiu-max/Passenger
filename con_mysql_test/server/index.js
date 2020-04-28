@@ -3,6 +3,9 @@ const express=require('express');
 const app=express();
 const redis=require('redis');
 const opredis=require('./../tools/op_redis');
+const multer=require('multer');
+const fs=require('fs');
+const path=require('path');
 app.use(express.json());
 
 //api接口测试
@@ -26,6 +29,96 @@ app.post('/api/register',function(req,res){
         })
         conn.end();
 })
+
+//获取图片
+app.get('/api/tripimages/:id/:index',function(req,res){
+                console.log('发送'+__dirname+'\\tripimages\\'+req.params.id+'\\tripimage_'+req.params.index+'.jpg')
+                res.sendFile(__dirname+'\\tripimages\\'+req.params.id+'\\tripimage_'+req.params.index+'.jpg');
+                //console.log('发送'+__dirname+'\\tripimages\\'+req.params.id+'\\tripimage_0');//url: '/demoimage?timg2.png',
+
+})
+
+///上传图片
+app.post('/api/tripimages',multer({
+        dest:'tripimages'
+}).array('file',9),function(req,res,next){
+        console.log('接收图片');
+        let files=req.files;
+        //console.log(files);
+        fs.exists("tripimages\\"+req.body.tripid,function(exists){
+        console.log('创建目录');
+        if(!exists){
+                fs.mkdir("tripimages\\"+req.body.tripid,function(err){
+                        if (err) {
+                                return console.error(err);
+                                }
+                                else{
+                                var newName = 'tripimages\\' +req.body.tripid+'\\'+'tripImage_'+req.body.index+ '.jpg';  
+                                console.log(newName);
+                                fs.rename(req.files[0].path, newName, function(err){
+                                        if (err){
+                                        res.send("upload  err");
+                                        console.log(err)
+                                        }else{
+                                        res.send("uploade success");
+                                        console.log('success')
+                                        }
+                                });
+                        }
+                        
+                })
+        }else{
+                var newName = 'tripimages\\' +req.body.tripid+'\\'+'tripImage_'+req.body.index+ '.jpg';  
+                console.log(newName);
+                fs.rename(req.files[0].path, newName, function(err){
+                        if (err){
+                        res.send("upload  err");
+                        console.log(err)
+                        }else{
+                        res.send("uploade success");
+                        console.log('success')
+                        }
+                });
+
+        }
+        })
+
+});
+
+//添加游记
+app.post('/api/addtrips',function(req,res){
+        let conn=consql.ConMysql('test');
+        //INSERT INTO insert_table (datetime, uid, content, type) VALUES (‘1’, ‘userid_1’, ‘content_1’, 1);
+        let sql=`insert into tuniu (name,authorId,viewCount,likeCount,commentCount,publishTime,picUrl,authorName,authorHeadImg,picNum) VALUES('${req.body.name}','${req.body.authorId}','1','0','0','${req.body.publishTime}','${req.body.picUrl}','${req.body.authorName}','${req.body.authorHeadImg}','${req.body.picNum}') ;`
+        console.log(sql);
+        conn.query(sql
+        ,async function(error,result,fields){
+                if(error){
+                        res.send({result:0,message:'插入游记失败',detail:error});
+                }else{
+                        res.send({result:1,message:'获取游记列表成功',data:result});
+                        console.log('get tripslist success');
+                }
+        })
+        conn.end();
+ 
+})
+
+//更新游记封面
+app.post('/api/updatetrip',function(req,res){
+        var conn=consql.ConMysql('test');
+        conn.query(`update tuniu set picUrl='${req.body.picUrl}' where id='${req.body.id}';`
+                ,function(error,result,fields){
+                if(error){
+                        res.send({result:0,message:'服务出错',detail:error});
+                }else{
+                        res.send({result:1,message:'更新游记封面'});
+                        }
+                
+        })
+        conn.end();
+})
+
 
 //mysql,登录，响应object,失败返回0和-1，成功返回1
 app.post('/api/login',function(req,res){

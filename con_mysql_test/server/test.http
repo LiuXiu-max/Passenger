@@ -76,3 +76,19 @@ post {{url}}/likelist/0/5
 {
     "id":"1"
 }
+
+###
+post {{url}}/addtrips
+{{ctjson}}
+
+{
+    "name":"adqergf",
+    "authorId":"123421",
+    "publishTime":"1997-07-1",
+    "picUrl":"picUrl6576571234",
+    "authorName":"authorNameadqergf",
+    "authorHeadImg":"authorHeadImg6576571234"
+}
+
+###
+get {{url}}/tripimages/31281416/0

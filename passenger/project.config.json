@@ -102,6 +102,14 @@
 					"id": -1,
 					"name": "myself",
 					"pathName": "pages/myself/myself",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "publish",
+					"pathName": "pages/publish/publish",
+					"query": "",
 					"scene": null
 				}
 			]

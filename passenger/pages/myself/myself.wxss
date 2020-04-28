@@ -1,9 +1,47 @@
 /* pages/myself/myself.wxss */
 .container{
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: auto;
 }
 .head{
-  width: 100%;
+  width: 90%;
   height: 200rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.username{
+  font-size: 40rpx;
+  font-weight: bold;
+}
+.userimage{
+  height: 120rpx;
+  width: 120rpx;
+  border-radius: 50%;
+}
+.tip{
+  color: #666;
+}
+.setlist{
+  margin-top: 40rpx;
+  border-bottom:1rpx solid #36cfc9;
+  height: 150rpx;
+  width: 90%;
+}
+.setitem{
+  line-height: 150rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.iconimage{
+  width: 60rpx;
+  height: 60rpx;
 }

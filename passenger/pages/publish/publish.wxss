@@ -1,1 +1,74 @@
 /* pages/publish/publish.wxss */
+.container{
+  margin-top: 20rpx;
+  background-color: white;
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.uploadinput{
+  height: 200rpx;
+}
+.uploadhead{
+  width: 600rpx;
+}
+.uploadbutton{
+  font-size: 30rpx;
+  color: white;
+  width: 120rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  margin-left: 480rpx;
+  background-color: #AAA;
+}
+button::after{
+  border: none;
+}
+.close{
+  background-image: url(https://www.liuxiu.xyz:8080/demoimage?close.png);
+  background-size: 100% 100%;
+  font-weight: bold;
+  font-size: 30rpx;
+  position: relative;
+  background-color: white;
+  opacity: 0.5;
+  width: 50rpx;
+  height: 50rpx;
+}
+.upimgbox{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: auto;
+  width: 600rpx;
+}
+.addbox{
+  height: auto;
+  width: auto;
+  border-right: 10rpx solid white;
+  border-bottom: 10rpx solid white;
+  
+}
+.addimage{
+  transform:scale(0.3);
+}
+image{
+  margin-right: -50rpx;
+  box-sizing: border-box;
+  height: 200rpx;
+  width: 200rpx;
+  border-right: 5rpx solid white;
+  border-bottom: 5rpx solid white;
+}
+
+.imglist{
+  display: flex;
+  flex-direction: row;
+}
+.count{
+align-self: flex-end;
+margin-right: 75rpx;
+}

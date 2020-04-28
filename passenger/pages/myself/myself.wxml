@@ -1,7 +1,17 @@
 <!--pages/myself/myself.wxml-->
-<text class="container">
+<view class="container">
   <view class="head">
-    <image src="{{userInfo.avatarUrl}}"/>
-    <view>{{userInfo.nickName}}</view>
+    <view>
+      <view class="username">{{userInfo.nickName}}</view>
+      <view class="tip">查看和编辑</view>
+    </view>
+    <image class="userimage" src="{{userInfo.avatarUrl}}"/>
   </view>
-</text>
+  <view class="setlist" wx:key="id" wx:for="{{setlist}}">
+    <view class="setitem">
+      <view data-text="" bindtap="" class="item_text">{{item.text}}</view>
+      <image class="iconimage" src="{{item.url}}" mode="cover"/>
+    </view>
+  </view>
+  
+</view>
