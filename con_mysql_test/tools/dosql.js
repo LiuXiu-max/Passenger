@@ -18,7 +18,7 @@ function QueryMysql(sqlcode,database) {
     connection.end();
 }
 function InsertMysql(sqlcode,item,database) {
-    var errornum=0;
+    //var errornum=0;
     var connection=mysql.createConnection({
         host:'localhost',
         user:'root',
@@ -34,7 +34,7 @@ function InsertMysql(sqlcode,item,database) {
     }
 });
     connection.end();
-    return errornum;
+    //return errornum;
 }
 module.exports={
     QueryMysql,

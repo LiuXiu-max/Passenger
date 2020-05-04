@@ -62,7 +62,7 @@ Page({
           console.log(imgLists);
           this.upload(imgLists, insertId, index, length);
           post_fetch('updatetrip',{
-            "picUrl": "/tripimages/" + insertId+"/0",
+            "picUrl": "http://localhost:3000/api/tripimages/" + insertId+"/0",
             "id": insertId
           })
         } else {

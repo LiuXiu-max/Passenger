@@ -1,11 +1,11 @@
-// pages/login/login.js
+// pages/tripdetail/tripdetail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    islogin:true
+
   },
 
   /**

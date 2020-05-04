@@ -9,6 +9,7 @@ function fliter_class_attr(myclass,attrlist){
                delete myclass[i][attr];
 
             }
+            myclass[i].picNum=1;
         }
     }
     return myclass;

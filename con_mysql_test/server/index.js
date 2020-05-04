@@ -30,7 +30,7 @@ app.post('/api/register',function(req,res){
         conn.end();
 })
 
-//获取图片
+//获取封面图片
 app.get('/api/tripimages/:id/:index',function(req,res){
                 console.log('发送'+__dirname+'\\tripimages\\'+req.params.id+'\\tripimage_'+req.params.index+'.jpg')
                 res.sendFile(__dirname+'\\tripimages\\'+req.params.id+'\\tripimage_'+req.params.index+'.jpg');
@@ -89,7 +89,7 @@ app.post('/api/tripimages',multer({
 app.post('/api/addtrips',function(req,res){
         let conn=consql.ConMysql('test');
         //INSERT INTO insert_table (datetime, uid, content, type) VALUES (‘1’, ‘userid_1’, ‘content_1’, 1);
-        let sql=`insert into tuniu (name,authorId,viewCount,likeCount,commentCount,publishTime,picUrl,authorName,authorHeadImg,picNum) VALUES('${req.body.name}','${req.body.authorId}','1','0','0','${req.body.publishTime}','${req.body.picUrl}','${req.body.authorName}','${req.body.authorHeadImg}','${req.body.picNum}') ;`
+        let sql=`insert into trips (name,authorId,viewCount,likeCount,commentCount,publishTime,picUrl,authorName,authorHeadImg,picNum) VALUES('${req.body.name}','${req.body.authorId}','1','0','0','${req.body.publishTime}','${req.body.picUrl}','${req.body.authorName}','${req.body.authorHeadImg}','${req.body.picNum}') ;`
         console.log(sql);
         conn.query(sql
         ,async function(error,result,fields){
@@ -107,7 +107,7 @@ app.post('/api/addtrips',function(req,res){
 //更新游记封面
 app.post('/api/updatetrip',function(req,res){
         var conn=consql.ConMysql('test');
-        conn.query(`update tuniu set picUrl='${req.body.picUrl}' where id='${req.body.id}';`
+        conn.query(`update trips set picUrl='${req.body.picUrl}' where id='${req.body.id}';`
                 ,function(error,result,fields){
                 if(error){
                         res.send({result:0,message:'服务出错',detail:error});
@@ -142,7 +142,7 @@ app.post('/api/login',function(req,res){
 //mysql,响应object,获取游记失败0，成功1
 app.get('/api/tripslist/:userid/:start/:end',async function(req,res){
         let conn=consql.ConMysql('test');
-        let sql=`select * from tuniu where 1=1 limit ${req.params.start},${req.params.end};`
+        let sql=`select * from trips where 1=1 limit ${req.params.start},${req.params.end};`
         console.log(sql);
         conn.query(sql
         ,async function(error,result,fields){
@@ -187,6 +187,73 @@ app.post('/api/addlike',function(req,res){
         client.quit();    
 })
 
+//添加usertag
+app.post('/api/addusertag',async function(req,res){
+        let client=opredis.newClient();
+        let taglist=await opredis.gettaglist(req.body.tripid);
+        console.log(taglist);
+        for(var i=0;i<taglist.length-1;i=i+2){
+                client.zincrby('usertag_'+req.body.userid,1,taglist[i],function(err,data){
+                        if(err){
+                                console.log(err)
+                        }else{
+                                console.log(data)
+                        }
+                })
+        }
+        client.quit();    
+})
+
+//删除usertag
+app.post('/api/delusertag',async function(req,res){
+        let client=opredis.newClient();
+        let taglist=await opredis.gettaglist(req.body.tripid);
+        console.log(taglist);
+        for(var i=0;i<taglist.length-1;i=i+2){
+                client.zincrby('usertag_'+req.body.userid,-1,taglist[i],function(err,data){
+                        if(err){
+                                console.log(err)
+                        }else{
+                                console.log(data)
+                        }
+                })
+        }
+        client.quit();    
+})
+
+//查看usertag
+app.post('/api/getusertag',function(req,res){
+
+        let client=opredis.newClient();
+        client.zrange('usertag_'+req.body.userid,0,-1,'withscores',function(err,data){
+                if(err){
+                        console.log(err)
+                }else{
+                        console.log(data)
+                }
+        })
+})
+
+//获取推荐列表
+app.post('/api/getrecommendlist',async function(req,res){
+        let getrecommendlist=await opredis.getrecommendlist(req.body.userid,req.body.start,req.body.end);
+        let conn=consql.ConMysql('test');
+        console.log(getrecommendlist);
+        let sql=`select* from trips where id in (${getrecommendlist});`
+        console.log(sql);
+        conn.query(sql
+        ,function(error,result,fields){
+                if(error){
+                        res.send({result:0,message:'推荐列表获取失败',detail:error});
+                }else{
+                        res.send({result:1,message:'推荐列表获取成功',data:result});
+                        console.log('successed get recommendlist');
+                }
+        })
+        conn.end();
+
+})
+
 //删除喜欢
 app.post('/api/dellike',function(req,res){
         let client=opredis.newClient();
@@ -206,7 +273,7 @@ app.post('/api/dellike',function(req,res){
 app.post('/api/likelist/:start/:end',async function(req,res){
         let historylist=await opredis.getlike(req.body.id+'_like');
         let conn=consql.ConMysql('test');
-         let sql=`select* from tuniu where id in (${historylist}) limit ${req.params.start},${req.params.end};`
+        let sql=`select* from trips where id in (${historylist}) limit ${req.params.start},${req.params.end};`
         console.log(sql);
         conn.query(sql
         ,function(error,result,fields){
@@ -225,7 +292,7 @@ app.post('/api/likelist/:start/:end',async function(req,res){
 //mysql,响应object,搜索游记，失败0，成功1
 app.get('/api/search/:text/:start/:end',function(req,res){
         let conn=consql.ConMysql('test');
-        let sql=`select* from tuniu where name like '%${req.params.text}%' limit ${req.params.start},${req.params.end};`
+        let sql=`select* from trips where name like '%${req.params.text}%' limit ${req.params.start},${req.params.end};`
         console.log(sql);
         conn.query(sql
         ,function(error,result,fields){
@@ -242,8 +309,8 @@ app.get('/api/search/:text/:start/:end',function(req,res){
 //mysql,响应object,按日期搜索游记,获取游记失败0，成功1
 app.get('/api/searchbydate/:userid/:text/:start/:end',async function(req,res){
         let conn=consql.ConMysql('test');
-        //select* from tuniu where name like '%游%' order by publishTime desc limit 0,5;
-        let sql=`select * from tuniu where name like '%${req.params.text}%' order by publishTime desc limit ${req.params.start},${req.params.end};`
+        //select* from trips where name like '%游%' order by publishTime desc limit 0,5;
+        let sql=`select * from trips where name like '%${req.params.text}%' order by publishTime desc limit ${req.params.start},${req.params.end};`
         console.log(sql);
         conn.query(sql
         ,async function(error,result,fields){
@@ -279,8 +346,8 @@ app.get('/api/searchbydate/:userid/:text/:start/:end',async function(req,res){
 //mysql,响应object,按受欢迎程度搜索游记,获取游记失败0，成功1
 app.get('/api/searchbylike/:userid/:text/:start/:end',async function(req,res){
         let conn=consql.ConMysql('test');
-        //select id,name,likeCount from tuniu where name like '%游%' order by likeCount+0 desc limit 0,5;
-        let sql=`select * from tuniu where name like '%${req.params.text}%' order by likeCount+0 desc limit ${req.params.start},${req.params.end};`
+        //select id,name,likeCount from trips where name like '%游%' order by likeCount+0 desc limit 0,5;
+        let sql=`select * from trips where name like '%${req.params.text}%' order by likeCount+0 desc limit ${req.params.start},${req.params.end};`
         console.log(sql);
         conn.query(sql
         ,async function(error,result,fields){
@@ -316,8 +383,8 @@ app.get('/api/searchbylike/:userid/:text/:start/:end',async function(req,res){
 //mysql,响应object,按浏览量搜索游记,获取游记失败0，成功1
 app.get('/api/searchbyview/:userid/:text/:start/:end',async function(req,res){
         let conn=consql.ConMysql('test');
-        //select id,name,viewCount from tuniu where name like '%游%' order by viewCount+0 desc limit 0,5;
-        let sql=`select * from tuniu where name like '%${req.params.text}%' order by viewCount+0 desc limit ${req.params.start},${req.params.end};`
+        //select id,name,viewCount from trips where name like '%游%' order by viewCount+0 desc limit 0,5;
+        let sql=`select * from trips where name like '%${req.params.text}%' order by viewCount+0 desc limit ${req.params.start},${req.params.end};`
         console.log(sql);
         conn.query(sql
         ,async function(error,result,fields){
@@ -365,7 +432,7 @@ app.post('/api/user_history',function(req,res){
 app.get('/api/historylist/:id/:start/:end',async function(req,res){
         let historylist=await opredis.gethistory('history_'+req.params.id,req.params.start,req.params.end);
         let conn=consql.ConMysql('test');
-         let sql=`select* from tuniu where id in (${historylist}) limit ${req.params.start},${req.params.end};`
+         let sql=`select* from trips where id in (${historylist}) limit ${req.params.start},${req.params.end};`
         console.log(sql);
         conn.query(sql
         ,function(error,result,fields){
@@ -379,6 +446,20 @@ app.get('/api/historylist/:id/:start/:end',async function(req,res){
         conn.end();
 })
 
+//添加test
+app.post('/api/addtest',function(req,res){
+        let client=opredis.newClient();
+        client.zadd(req.body.userid+'_test',req.body.arr,function(err,data){
+                if(err){
+                        console.log('添加失败');
+                        res.send(err);
+                }else{
+                        console.log('添加成功');
+                        res.send({result:1,message:'游记'+req.body.arr+'已经添加到'+req.body.userid+'_like'});
+                }
+        });
+        client.quit();    
+})
 //监听端口3000
 app.listen(3000,function(err){
         if(err){

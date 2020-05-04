@@ -5,7 +5,7 @@
     "pages/demo/demo",
     "pages/searchpage/searchpage",
     "pages/mytrips/mytrips",
-    "pages/login/login",
+    "pages/tripdetail/tripdetail",
     "pages/searchlist/searchlist",
     "pages/publish/publish"
 

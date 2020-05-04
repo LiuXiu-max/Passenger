@@ -92,3 +92,49 @@ post {{url}}/addtrips
 
 ###
 get {{url}}/tripimages/31281416/0
+
+###
+post {{url}}/addusertag
+{{ctjson}}
+
+{
+    "userid":"1",
+    "tripid":"31277605"
+}
+
+###
+post {{url}}/delusertag
+{{ctjson}}
+
+{
+    "userid":"1",
+    "tripid":"31277605"
+}
+
+
+###
+post {{url}}/getusertag
+{{ctjson}}
+
+{
+    "userid":"1"
+}
+
+###
+post {{url}}/getrecommendlist
+{{ctjson}}
+
+{
+    "userid":"1",
+    "start":"0",
+    "end":"9"
+}
+
+###
+post {{url}}/addtest
+{{ctjson}}
+
+{
+    "userid":"1",
+    "arr":[1,12312,2,1123,3,1434]
+}

@@ -30,9 +30,9 @@
       </scroll-view>
   </view>
   <view class="footer">
-    <view class="newtxt">最新发布</view>
+    <view class="newtxt">为您推荐</view>
     <view>
-      <view wx:for="{{list}}" wx:key="id" class="card-box-new" id="card_{{index}}">
+      <view wx:for="{{recommendlist}}" wx:key="id" class="card-box-new" id="card_{{index}}">
         <view class="new-card">
             <!-- <view>{{item}}</view> -->
           <view class="cardImg" style="background-image: url({{item.picUrl}})">            

@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 const fetch=require('../../utils/fetch.js')
+const post_fetch = require('../../utils/post_fetch.js')
 const DEFAULT_PAGE = 0;
 Page({
   startPageX: 0,
@@ -12,7 +13,9 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     toView: `card_${DEFAULT_PAGE}`,
-    list: []
+    list: [],
+    recommendlist:[],
+    likelist:[]
   },
   tapHeart(event){
     console.log(event.target.dataset.index);
@@ -31,7 +34,10 @@ Page({
       this.setData({list:res.data.data})
       console.log(res.data.data)
     })
-    console.log(app.globalData.userInfo);
+    post_fetch('getrecommendlist', { "userid": wx.getStorageSync("userId"), "start": this.data.pageStart, "end": this.data.pageEnd}).then(res => {
+      this.setData({ recommendlist: res.data.data })
+      console.log(res.data.data)
+    })
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
