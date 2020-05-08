@@ -7,7 +7,7 @@ Page({
   data: {
     inputfocus:false,
     searchtext:'',
-    search_history_list:['按时撒多','安达市大所','按时发斯蒂芬','对方过后']
+    search_history_list:['途牛','耶路撒冷','冬天','纽芬兰']
   },
   go_search(){
     if(this.data.searchtext){

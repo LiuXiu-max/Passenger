@@ -13,6 +13,18 @@ Page({
     filer_tag:[false,false,false],
     searchtext:'游'
   },
+  tapHeart(event) {
+    console.log(event.target.dataset.index);
+    const searchlist = this.data.searchlist;
+    if (searchlist[event.target.dataset.index].iflike) {
+      searchlist[event.target.dataset.index].iflike = false;
+      this.setData({ searchlist });
+    } else {
+      searchlist[event.target.dataset.index].iflike = true;
+      this.setData({ searchlist });
+    }
+
+  },
   tapdate(){
     this.setData({filer_tag:[true,false,false]})
     //console.log(this.data.filer_tag)

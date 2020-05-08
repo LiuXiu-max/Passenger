@@ -139,10 +139,43 @@ app.post('/api/login',function(req,res){
         conn.end();
 })
 
-//mysql,响应object,获取游记失败0，成功1
+//获取游记,失败0，成功1
 app.get('/api/tripslist/:userid/:start/:end',async function(req,res){
         let conn=consql.ConMysql('test');
         let sql=`select * from trips where 1=1 limit ${req.params.start},${req.params.end};`
+        console.log(sql);
+        conn.query(sql
+        ,async function(error,result,fields){
+                if(error){
+                        res.send({result:0,message:'获取游记列表失败',detail:error});
+                }else{
+                        client=opredis.newClient();
+                        for(var i=0;i<req.params.end-req.params.start;i++){
+                                await opredis.ifLike(req.params.userid,result[i].id).then((res)=>{    
+                                        console.log(res);
+                                        if(res){
+                                                result[i].iflike=true;
+                                        }else{
+                                                result[i].iflike=false;
+                                        }
+                                }).catch(err=>{
+                                        console.log(err);
+                                });
+
+                        }
+                        client.quit();
+                        res.send({result:1,message:'获取游记列表成功',data:result});
+                        console.log('get tripslist success');
+                }
+        })
+        conn.end();
+ 
+})
+
+//获取用户自己的游记,失败0，成功1
+app.get('/api/selftrips/:userid/:start/:end',async function(req,res){
+        let conn=consql.ConMysql('test');
+        let sql=`select * from trips where authorId='${req.params.userid}' limit ${req.params.start},${req.params.end};`
         console.log(sql);
         conn.query(sql
         ,async function(error,result,fields){

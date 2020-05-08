@@ -11,7 +11,7 @@
     </view>
     <view wx:if="{{listtag}}" class="searchbox" >
       <view wx:for="{{searchlist}}" wx:key="id" class="searchcard">
-        <view class="cardimg" style="background-image: url({{item.picUrl}})"></view>
+        <view class="cardimg" style="background-image: url({{item.picUrl}})"><view class="new_imageback"><image data-index="{{index}}" bindtap="tapHeart" mode="cover" class="{{item.iflike?'heart_full':'heart'}}" src="{{item.iflike?'https://www.liuxiu.xyz:8080/demoimage?heart_full.png':'https://www.liuxiu.xyz:8080/demoimage?heart.png'}}"/></view></view>
         <view class="cardname">{{item.name}}</view>
         <view class="detailfoot">
           <view  class="itemblock">
@@ -30,7 +30,7 @@
       </view>
     </view>
     <view wx:else>
-      没搜到~换个词试试~
+      没有记录~多逛逛~
     </view>
   </view>
 </view>

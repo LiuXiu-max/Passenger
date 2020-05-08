@@ -15,7 +15,6 @@ Page({
     toView: `card_${DEFAULT_PAGE}`,
     list: [],
     recommendlist:[],
-    likelist:[]
   },
   tapHeart(event){
     console.log(event.target.dataset.index);
@@ -58,7 +57,23 @@ Page({
     console.log(this.data.userInfo);
   },
   onHide:function(){
-    console.log('demo hided')
+    let list=this.data.list;
+    let likelist=[];
+    let dislikelist=[];
+    list.forEach(function(item,index){
+      if(item.iflike){
+      likelist.push(item.id);
+      }else{
+        dislikelist.push(item.id);
+      }
+    })
+    post_fetch('addlike', { "userid": wx.getStorageSync("userId"), "tripid": likelist }).then(res => {
+      console.log(res.data)
+    })
+    post_fetch('dellike', { "userid": wx.getStorageSync("userId"), "tripid": dislikelist }).then(res => {
+      console.log(res.data)
+    })
+    
   },
   toMyself:function(){
     wx.navigateTo({

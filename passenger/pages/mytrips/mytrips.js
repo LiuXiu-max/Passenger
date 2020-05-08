@@ -12,7 +12,18 @@ Page({
     startindex: 0,
     pagesize: 5,
     filer_tag: [false, false, false],
-    searchtext: '游'
+  },
+  tapHeart(event) {
+    console.log(event.target.dataset.index);
+    const searchlist = this.data.searchlist;
+    if (searchlist[event.target.dataset.index].iflike) {
+      searchlist[event.target.dataset.index].iflike = false;
+      this.setData({ searchlist });
+    } else {
+      searchlist[event.target.dataset.index].iflike = true;
+      this.setData({ searchlist });
+    }
+
   },
   go_publish(){
     wx.navigateTo({
@@ -51,7 +62,7 @@ Page({
   },
   tapmytrips() {
     this.setData({ filer_tag: [false, true, false] })
-    let url = 'searchbyview/1/' + this.data.searchtext + '/' + this.data.startindex + '/' + this.data.pagesize;
+    let url = 'selftrips/' + wx.getStorageSync("userId") + '/' + this.data.startindex + '/' + this.data.pagesize;
     fetch(url).then(res => {
       console.log(res.data)
       if (res.data.result) {
@@ -63,21 +74,11 @@ Page({
       //console.log(this.data.searchlist)
     })
   },
-  cleartext() {
-    this.setData({ inputfocus: false }, () => {
-      this.setData({ searchtext: '' });
-    })
-  },
-  inputing(e) {
-    this.setData({ searchtext: e.detail.value });
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (options.searchtext) {
-      this.setData({ searchtext: options.searchtext })
-    }
 
   },
 
