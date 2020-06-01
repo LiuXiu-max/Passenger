@@ -111,6 +111,19 @@
 					"pathName": "pages/publish/publish",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "tripdetail",
+					"pathName": "pages/tripdetail/tripdetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "changepsd",
+					"pathName": "pages/changepsd/changepsd",
+					"scene": null
 				}
 			]
 		}

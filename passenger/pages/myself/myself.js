@@ -8,11 +8,15 @@ Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
-    setlist: [{ 'text': '修改密码', 'url': 'https://www.liuxiu.xyz:8080/demoimage?password.png' },
-    { 'text': '邀请朋友', 'url': 'https://www.liuxiu.xyz:8080/demoimage?add-account.png' },
-    { 'text': '个人中心', 'url': 'https://www.liuxiu.xyz:8080/demoimage?set.png'}],
+    setlist: [{ 'text': '修改密码', 'url': 'https://www.liuxiu.xyz/demoimage?password.png' },
+    { 'text': '邀请朋友', 'url': 'https://www.liuxiu.xyz/demoimage?add-account.png' },
+    { 'text': '个人中心', 'url': 'https://www.liuxiu.xyz/demoimage?set.png'}],
   },
-
+  changepsd:function(){
+    wx.navigateTo({
+      url: '../changepsd/changepsd'
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

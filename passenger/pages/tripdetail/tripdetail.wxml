@@ -1,2 +1,51 @@
-<!--pages/tripdetail/tripdetail.wxml-->
-<text>pages/tripdetail/tripdetail.wxml</text>
+<view class="container">
+  <view class="cardimg" style="background-image: url({{tripdetail.picUrl}}) ">
+    <view class="new_imageback" bindtap="tapHeart">
+    <image mode="cover" class="{{tripdetail.iflike?'heart_full':'heart'}}" src="{{tripdetail.iflike?'https://www.liuxiu.xyz/demoimage?heart_full.png':'https://www.liuxiu.xyz/demoimage?heart.png'}}"/>
+    </view>
+  </view>
+  <view class="tripname">{{tripdetail.name}}</view>
+  <view class="authordetail">
+    <view class="authorname">{{tripdetail.authorName}}</view>
+    <image class="authorimg" src="{{tripdetail.authorHeadImg}}"/>
+  </view>
+  <view class="comm">来源：{{tripdetail.sourse}}</view>
+  <view class="comm">介绍</view>
+  <view class="summary">{{tripdetail.summary}}</view>
+  <view class="pic">照片</view>
+    <scroll-view wx:if="{{ifimage}}" class='scroll-box' scroll-x scroll-with-animation>
+      <view wx:for="{{imagelist}}" wx:key="id" class="card-box">
+      <image class="imgcard" data-index="{{index}}" src="{{item}}" bindtap="scopeimage" mode="aspectFill"/>
+      </view>
+    </scroll-view>
+    <scroll-view wx:else class='scroll-box' scroll-x scroll-with-animation>
+      <view  wx:key="id" class="card-box">
+      <image class="imgcard" data-index="{{index}}" src="{{tripdetail.picUrl}}" bindtap="scopeimage" mode="aspectFill"/>
+      </view>
+    </scroll-view>
+    <view class="comm">评论</view>
+    <view wx:if="{{committag}}" class="commlistbox">
+      <view  class="commlist" wx:for="{{commlist}}" wx:key='id'>
+        <view  class="commerdetail">
+          <image class="commerimg" src="{{item.avatarUrl}}"/>
+          <view class="commerdoc">
+            <view class="commername">{{item.nickName}}</view>
+            <view class="commtime">{{item.time}}</view>
+          </view>
+          <view class="pad"></view>
+          <image wx:if="{{item.userId==userId}}" data-index="{{index}}" bindtap="delcomm" class="delicon" src="https://www.liuxiu.xyz/demoimage?ashbin.png" />
+        </view>
+        <view class="commitcon">{{item.content}}</view>
+      </view>
+    </view>
+    <view wx:else>
+      暂无评论
+    </view>
+    <view class="inputback">
+      <view class="commitbox">
+      <input type="text" bindinput="inputing" bindconfirm="go_commit"  placeholder='添加评论' class="comipt" value="{{commitcon}}"></input>
+      <button bindtap="go_commit" class="commbut">评论</button>
+    </view>
+    </view>
+    <view class="combottom"></view>
+</view>

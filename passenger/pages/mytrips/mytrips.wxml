@@ -11,19 +11,32 @@
     </view>
     <view wx:if="{{listtag}}" class="searchbox" >
       <view wx:for="{{searchlist}}" wx:key="id" class="searchcard">
-        <view class="cardimg" style="background-image: url({{item.picUrl}})"><view class="new_imageback"><image data-index="{{index}}" bindtap="tapHeart" mode="cover" class="{{item.iflike?'heart_full':'heart'}}" src="{{item.iflike?'https://www.liuxiu.xyz:8080/demoimage?heart_full.png':'https://www.liuxiu.xyz:8080/demoimage?heart.png'}}"/></view></view>
+        <view class="cardimg" data-index="{{index}}" bindtap="navdetail"  style="background-image: url({{item.picUrl}})">
+          <view class="new_imageback">
+            <image data-index="{{index}}" catchtap="tapHeart" mode="cover" class="{{item.iflike?'heart_full':'heart'}}" src="{{item.iflike?'https://www.liuxiu.xyz/demoimage?heart_full.png':'https://www.liuxiu.xyz/demoimage?heart.png'}}"/>
+          </view>
+        </view>
         <view class="cardname">{{item.name}}</view>
-        <view class="detailfoot">
+        <view wx:if="{{filer_tag[1]}}" class="detailfoot">
           <view  class="itemblock">
-            <image class="dateIcon" src="https://www.liuxiu.xyz:8080/demoimage?clock-fill.png" mode="cover"/>
+            <image class="dateIcon" src="https://www.liuxiu.xyz/demoimage?clock-fill.png" mode="cover"/>
             <view>{{item.publishTime}}</view>
           </view>
           <view class="itemblock">
-            <image class="popIcon" src="https://www.liuxiu.xyz:8080/demoimage?favorites-fill-small.png" mode="cover"/>
+            <image class="ashbinIcon" bindtap="deltrip" data-index="{{index}}" src="https://www.liuxiu.xyz/demoimage?ashbin.png" mode="cover"/>
+          </view>
+        </view>
+        <view wx:else class="detailfoot">
+          <view  class="itemblock">
+            <image class="dateIcon" src="https://www.liuxiu.xyz/demoimage?clock-fill.png" mode="cover"/>
+            <view>{{item.publishTime}}</view>
+          </view>
+          <view class="itemblock">
+            <image class="popIcon" src="https://www.liuxiu.xyz/demoimage?favorites-fill-small.png" mode="cover"/>
             <view >{{item.likeCount}}</view>
           </view>
           <view class="itemblock">
-            <image class="eyeIcon" src="https://www.liuxiu.xyz:8080/demoimage?eye.png" mode="cover"/>
+            <image class="eyeIcon" src="https://www.liuxiu.xyz/demoimage?eye.png" mode="cover"/>
             <view>{{item.viewCount}}</view>
           </view>
         </view>

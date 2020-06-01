@@ -7,7 +7,7 @@ page{
 .container {
   height: 100%;
   position: absolute;
-  background: url(https://www.liuxiu.xyz:8080/demoimage?demoback.jpg) center no-repeat;
+  background: url(https://www.liuxiu.xyz/demoimage?demoback.jpg) center no-repeat;
   background-size: 100% 100%;
 
 }
@@ -55,7 +55,7 @@ page{
   border-bottom-left-radius: 48rpx;
   border-bottom-right-radius: 0rpx;
   border-top-right-radius:0rpx; 
-  background-image:url(https://www.liuxiu.xyz:8080/demoimage?search.png);
+  background-image:url(https://www.liuxiu.xyz/demoimage?search.png);
   background-size: 70% 70%;
   background-repeat: no-repeat;
   background-position:center;
@@ -129,11 +129,12 @@ button::after{
   height: 100%;
   width: 100%;
 }
-.pop-card text{
+.popname{
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-top: 160rpx;
+  margin-top: 250rpx;
   margin-left: 10rpx;
   color: black;
   font-weight: bold;

@@ -1,4 +1,7 @@
 // pages/searchpage/searchpage.js
+const app = getApp()
+const fetch = require('../../utils/fetch.js')
+const post_fetch = require('../../utils/post_fetch.js')
 Page({
 
   /**
@@ -7,10 +10,13 @@ Page({
   data: {
     inputfocus:false,
     searchtext:'',
-    search_history_list:['途牛','耶路撒冷','冬天','纽芬兰']
+    search_history_list:[]
   },
   go_search(){
     if(this.data.searchtext){
+      post_fetch('add_search_history', { "userid": wx.getStorageSync("userId"), "searchItem": this.data.searchtext }).then(res => {
+        console.log(res.data.message)
+      })
       wx.navigateTo({
         url: '../searchlist/searchlist?searchtext=' + this.data.searchtext,
       })
@@ -26,13 +32,18 @@ Page({
   },
   delall_history(){
     this.setData({ search_history_list:[]})
+    post_fetch('empty_search_history', { "userid": wx.getStorageSync("userId")}).then(res => {
+      console.log(res.data.message)
+    })
   },
   del_history(e){
     let index = e.target.dataset.index;
     console.log(index);
     let list=this.data.search_history_list;
+    post_fetch('del_search_history', { "userid": wx.getStorageSync("userId"), "searchItem": list[index] }).then(res => {
+      console.log(res.data.message)
+    })
     list.splice(index,1);
-    console.log(list);
     this.setData({search_history_list:list});
   },
   inputing(e){
@@ -42,7 +53,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    fetch('get_search_history/' + wx.getStorageSync("userId")).then(res => {
+      this.setData({ search_history_list: res.data.data })
+      console.log(res.data.data)
+    })
   },
 
   /**
@@ -56,7 +70,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    fetch('get_search_history/' + wx.getStorageSync("userId")).then(res => {
+      this.setData({ search_history_list: res.data.data })
+      console.log(res.data.data)
+    })
   },
 
   /**

@@ -12,6 +12,11 @@
 .uploadinput{
   height: 200rpx;
 }
+.titleinput{
+  height: 70rpx;
+  margin-bottom: 100rpx;
+  border-bottom: 1rpx #aaa solid;
+}
 .uploadhead{
   width: 600rpx;
 }
@@ -28,7 +33,7 @@ button::after{
   border: none;
 }
 .close{
-  background-image: url(https://www.liuxiu.xyz:8080/demoimage?close.png);
+  background-image: url(https://www.liuxiu.xyz/demoimage?close.png);
   background-size: 100% 100%;
   font-weight: bold;
   font-size: 30rpx;

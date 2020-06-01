@@ -91,7 +91,6 @@ button::after{
   text-overflow: ellipsis;
 }
 .detailfoot{
-  
   padding-top: 20rpx;
   height: 20%;
   justify-content: space-between;
@@ -101,9 +100,27 @@ button::after{
   flex-direction: row;
   margin-bottom: 20rpx;
 }
-.detailfoot image{
+.dateIcon{
     width: 35rpx;
   height: 40rpx;
+}
+.popIcon{
+    width: 35rpx;
+  height: 40rpx;
+}
+.eyeIcon{
+    width: 35rpx;
+  height: 40rpx;
+}
+
+.item_navigator{
+  height: 100%;
+  width: 100%;
+}
+.ashbinIcon{
+  width: 70rpx;
+  height: 70rpx;
+  margin-right: 10rpx;
 }
 .cardname{
   font-weight: bold;

@@ -7,11 +7,18 @@
     </view>
     <image class="userimage" src="{{userInfo.avatarUrl}}"/>
   </view>
-  <view class="setlist" wx:key="id" wx:for="{{setlist}}">
-    <view class="setitem">
-      <view data-text="" bindtap="" class="item_text">{{item.text}}</view>
-      <image class="iconimage" src="{{item.url}}" mode="cover"/>
-    </view>
+  <view class="setlist">
+    <button bindtap="changepsd" class="setitem">
+      <view data-text="" bindtap="" class="item_text">{{setlist[0].text}}</view>
+      <image class="iconimage" src="{{setlist[0].url}}" mode="cover"/>
+    </button>
+    <button open-type="share" class="setitem">
+        <view data-text=""  class="item_text">{{setlist[1].text}}</view>
+        <image class="iconimage" src="{{setlist[1].url}}" mode="cover"/>
+    </button>
+    <button class="setitem">
+      <view data-text="" bindtap="" class="item_text">{{setlist[2].text}}</view>
+      <image class="iconimage" src="{{setlist[2].url}}" mode="cover"/>
+    </button>
   </view>
-  
 </view>

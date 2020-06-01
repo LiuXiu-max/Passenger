@@ -7,6 +7,7 @@
     "pages/mytrips/mytrips",
     "pages/tripdetail/tripdetail",
     "pages/searchlist/searchlist",
+    "pages/changepsd/changepsd",
     "pages/publish/publish"
 
   ],

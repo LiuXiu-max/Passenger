@@ -16,27 +16,34 @@ Page({
     list: [],
     recommendlist:[],
   },
-  tapHeart(event){
+  taprecomHeart(event) {
     console.log(event.target.dataset.index);
-    const list=this.data.list;
-    if (list[event.target.dataset.index].iflike){
-      list[event.target.dataset.index].iflike = false;
-      this.setData({ list });
-    }else{
-      list[event.target.dataset.index].iflike = true;
-      this.setData({ list });
+    const recommendlist = this.data.recommendlist;
+    if (recommendlist[event.target.dataset.index].iflike) {
+      recommendlist[event.target.dataset.index].iflike = false;
+      post_fetch('dellike', { "userid": wx.getStorageSync("userId"), "tripid": recommendlist[event.target.dataset.index].id }).then(res => {
+        console.log(res.data)
+      })
+      this.setData({ recommendlist });
+    } else {
+      recommendlist[event.target.dataset.index].iflike = true;
+      post_fetch('addlike', { "userid": wx.getStorageSync("userId"), "tripid": recommendlist[event.target.dataset.index].id }).then(res => {
+        console.log(res.data)
+      })
+      this.setData({ recommendlist });
     }
-
   },
-  onLoad: function () {
-    fetch('tripslist/' + wx.getStorageSync("userId")+'/' + this.data.pageStart + '/' + this.data.pageEnd).then(res=>{
-      this.setData({list:res.data.data})
+  onShow:function(){
+    fetch('tripslist/' + wx.getStorageSync("userId") + '/' + this.data.pageStart + '/' + this.data.pageEnd).then(res => {
+      this.setData({ list: res.data.data })
       console.log(res.data.data)
     })
-    post_fetch('getrecommendlist', { "userid": wx.getStorageSync("userId"), "start": this.data.pageStart, "end": this.data.pageEnd}).then(res => {
+    post_fetch('getrecommendlist', { "userid": wx.getStorageSync("userId"), "start": this.data.pageStart, "end": this.data.pageEnd }).then(res => {
       this.setData({ recommendlist: res.data.data })
       console.log(res.data.data)
     })
+  },
+  onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -56,27 +63,8 @@ Page({
     }
     console.log(this.data.userInfo);
   },
-  onHide:function(){
-    let list=this.data.list;
-    let likelist=[];
-    let dislikelist=[];
-    list.forEach(function(item,index){
-      if(item.iflike){
-      likelist.push(item.id);
-      }else{
-        dislikelist.push(item.id);
-      }
-    })
-    post_fetch('addlike', { "userid": wx.getStorageSync("userId"), "tripid": likelist }).then(res => {
-      console.log(res.data)
-    })
-    post_fetch('dellike', { "userid": wx.getStorageSync("userId"), "tripid": dislikelist }).then(res => {
-      console.log(res.data)
-    })
-    
-  },
   toMyself:function(){
-    wx.navigateTo({
+    wx.switchTab({
       url: '../myself/myself'
     })
   }

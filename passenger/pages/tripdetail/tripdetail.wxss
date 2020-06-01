@@ -1,1 +1,183 @@
 /* pages/tripdetail/tripdetail.wxss */
+.container{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.cardimg{
+  height: 400rpx;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: 100%,100%;
+}
+.new_imageback{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f7f7;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-top: 40rpx;
+  margin-left: 640rpx;
+}
+.heart_full{
+  width: 45rpx;
+  height: 45rpx;
+}
+.heart{
+  width: 45rpx;
+  height: 45rpx;
+}
+.tripname{
+  margin-top: 45rpx;
+  width: 90%;
+  font-size: 40rpx;
+}
+.authordetail{
+  margin-top: 20rpx;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  height: 100rpx;
+  border-bottom: 1rpx #ccc solid;
+  box-shadow: 2rpx #666;
+}
+.authorname{
+  margin-right: 10rpx;
+  font-size: 32rpx;
+  color: #666;
+  line-height: 70rpx;
+}
+.authorimg{
+  height: 70rpx;
+  width: 70rpx;
+  border-radius: 50%;
+}
+.pic{
+  margin-top: 40rpx;
+  margin-bottom: 20rpx;
+  width: 90%;
+  font-size: 32rpx;
+  color: #666;
+}
+.summary{
+  width: 90%;
+}
+.scroll-box{
+  width: 90%;
+  white-space:nowrap;
+}
+.card-box{
+  display:inline-block;
+}
+.imgcard{
+  height: 200rpx;
+  width: 200rpx;
+  border-radius: 20rpx;
+  margin-right: 20rpx;
+}
+.comm{
+  margin-top: 40rpx;
+  margin-bottom: 20rpx;
+  width: 90%;
+  font-size: 32rpx;
+  color: #666;
+}
+.commlistbox{
+  width: 90%;
+}
+.commlist{
+  width: 100%;
+}
+.commerdetail{
+  display: flex;
+  flex-direction: row;
+}
+.commerimg{
+  height: 110rpx;
+  width: 110rpx;
+  border-radius: 50%;
+  margin: 10rpx;
+  margin-left: 0rpx;
+}
+.commername{
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+  font-size: 35rpx;
+}
+.commtime{
+  color: #999;
+}
+.commitcon{
+  margin-top: 20rpx;
+  margin-bottom: 70rpx;
+  font-size: 32rpx;
+  color: #666;
+}
+.delicon{
+  margin-top: 50rpx;
+  height: 50rpx;
+  width: 50rpx;
+}
+.pad{
+  flex: 1;
+}
+.commitbox{
+  position: fixed;
+  bottom: 10rpx;
+  height: 80rpx;
+  width: 90%;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  border-radius: 40rpx;
+}
+.comipt{
+  height: 80rpx;
+  padding-left: 20rpx;
+  line-height: 80rpx;
+  width: 80%;
+  border-top-left-radius: 40rpx;
+  border-bottom-left-radius: 40rpx;
+  border-bottom-right-radius: 0rpx;
+  border-top-right-radius:0rpx;
+}
+.commbut{
+  height: 80rpx;
+  width: 20%;
+  border-top-left-radius: 0rpx;
+  border-bottom-left-radius: 0rpx;
+  border-bottom-right-radius: 40rpx;
+  border-top-right-radius:40rpx;
+}
+button{
+  font-size: 32rpx;
+  width: 100rpx;
+  border: 0;
+  background-color: white;
+  margin-right: 0;
+  height: 100%;
+  background-size: 70% 70%;
+  background-repeat: no-repeat;
+  background-position:center;
+}
+button::after{
+  border:none;
+}
+.inputback{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0rpx;
+  height: 100rpx;
+  width: 100%;
+  background-color: #CCC;
+}
+.combottom{
+  margin-bottom: 100rpx;
+}

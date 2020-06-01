@@ -1,0 +1,37 @@
+/* pages/changepsd/changepsd.wxss */
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 800rpx;
+  width: 100%;
+  background-color: white;
+}
+.psdbox{
+  font-size: 36rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 500rpx;
+  width: 90%;
+
+}
+input{
+  border-radius: 30rpx;
+  height: 60rpx;
+  background-color: #eee;
+}
+.oldpsd{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 100rpx;
+}
+.newpsd{
+  display: flex;
+  flex-direction: row;
+}
+.changepsd{
+  width: 400rpx;
+}

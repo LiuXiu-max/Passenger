@@ -1,4 +1,5 @@
-@url=http://localhost:3000/api
+@url=https://www.liuxiu.xyz/api
+@url2=http://localhost:3000/api
 @ctjson=Content-Type: application/json
 
 ###
@@ -87,11 +88,14 @@ post {{url}}/addtrips
     "publishTime":"1997-07-1",
     "picUrl":"picUrl6576571234",
     "authorName":"authorNameadqergf",
-    "authorHeadImg":"authorHeadImg6576571234"
+    "authorHeadImg":"authorHeadImg6576571234",
+    "picNum":1,
+    "sourse":"原创",
+    "summary":"这是游记简介"
 }
 
 ###
-get {{url}}/tripimages/31281416/0
+get {{url}}/tripimages/31281326/0
 
 ###
 post {{url}}/addusertag
@@ -138,3 +142,18 @@ post {{url}}/addtest
     "userid":"1",
     "arr":[1,12312,2,1123,3,1434]
 }
+
+###
+get {{url}}/selftrips/1/0/4
+
+###
+get {{url}}/get_search_history/1
+
+###
+get {{url}}/tripdetail/1/31281323
+
+###
+get {{url}}/imageurls/31281327
+
+###
+get {{url}}/getimage/31281327/tripImage_0.jpg

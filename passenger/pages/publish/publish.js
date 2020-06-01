@@ -10,12 +10,13 @@ Page({
   data: {
     imgcount:0,
     imgLists:[],
-    editortext:''
+    editortext:'',
+    title:''
   },
   upload(imgLists, insertId, index, length) {
     let that=this;
     wx.uploadFile({
-      url: 'http://localhost:3000/api/tripimages',
+      url: 'https://www.liuxiu.xyz/api/tripimages',
       filePath: imgLists[index],
       name: 'file',
       header: {
@@ -48,13 +49,15 @@ Page({
     var date = getdate(Date.parse(new Date()));
     if (this.data.editortext!=''&&this.data.imgLists!='') {
       post_fetch('addtrips', {
-        "name": this.data.editortext,
+        "name": this.data.title,
         "authorId": wx.getStorageSync("userId"),
         "publishTime": date,
         "picUrl": "",
         "picNum": imgLists.length,
         "authorName": app.globalData.userInfo.nickName,
-        "authorHeadImg": app.globalData.userInfo.avatarUrl
+        "authorHeadImg": app.globalData.userInfo.avatarUrl,
+        "summary":this.data.editortext,
+        "sourse":'原创'
       }).then(res => {
         if (res.data.result) {
           let insertId = res.data.data.insertId;
@@ -62,7 +65,7 @@ Page({
           console.log(imgLists);
           this.upload(imgLists, insertId, index, length);
           post_fetch('updatetrip',{
-            "picUrl": "http://localhost:3000/api/tripimages/" + insertId+"/0",
+            "picUrl": "https://www.liuxiu.xyz/api/tripimages/" + insertId+"/0",
             "id": insertId
           })
         } else {
@@ -89,11 +92,17 @@ Page({
       }
 
     }
-
+    wx.switchTab({
+      url: '../mytrips/mytrips'
+    })
   },
-  inputing(e){
+  inputingtext(e){
     this.setData({ editortext: e.detail.text});
     console.log(this.data.editortext);
+  },
+  inputingtitle(e) {
+    this.setData({ title: e.detail.value });
+    console.log(this.data.title);
   },
   scopeimage(e){
     let imgLists = this.data.imgLists;

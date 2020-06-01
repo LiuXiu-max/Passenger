@@ -1,0 +1,12 @@
+<!--pages/changepsd/changepsd.wxml-->
+<view class="container">
+  <view class="psdbox">
+    <view class="oldpsd">
+      <view>旧密码:</view><input bindinput="inputoldpsd" type="password"/>
+    </view>
+    <view class="newpsd">
+      <view>新密码:</view><input bindinput="inputnewpsd"  type="password"/>
+    </view>
+  </view>
+  <button class="changepsd" bindtap="changepsd">确定</button>
+</view>

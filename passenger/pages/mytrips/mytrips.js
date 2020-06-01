@@ -13,14 +13,37 @@ Page({
     pagesize: 5,
     filer_tag: [false, false, false],
   },
+  navdetail(event){
+    let index = event.target.dataset.index;
+    let searchlist = this.data.searchlist;
+    wx.navigateTo({
+      url: '/pages/tripdetail/tripdetail?tripId='+searchlist[index].id,
+    })
+  },
+  deltrip(event) {
+    let index = event.target.dataset.index;
+    let searchlist=this.data.searchlist;
+    console.log(index);
+    post_fetch('deltrip', { "tripid": JSON.stringify(searchlist[index].id) }).then(res => {
+      console.log(res.data.message)
+    })
+    searchlist.splice(index, 1);
+    this.setData({searchlist});
+  },
   tapHeart(event) {
     console.log(event.target.dataset.index);
     const searchlist = this.data.searchlist;
     if (searchlist[event.target.dataset.index].iflike) {
       searchlist[event.target.dataset.index].iflike = false;
+      post_fetch('dellike', { "userid": wx.getStorageSync("userId"), "tripid": searchlist[event.target.dataset.index].id }).then(res => {
+        console.log(res.data)
+      })
       this.setData({ searchlist });
     } else {
       searchlist[event.target.dataset.index].iflike = true;
+      post_fetch('addlike', { "userid": wx.getStorageSync("userId"), "tripid": searchlist[event.target.dataset.index].id }).then(res => {
+        console.log(res.data)
+      })
       this.setData({ searchlist });
     }
 
@@ -86,14 +109,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.taphistory()
+  
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.taphistory()
   },
 
   /**

@@ -1,5 +1,7 @@
 // pages/searchlist/searchlist.js
+const app = getApp()
 const fetch = require('../../utils/fetch.js')
+const post_fetch = require('../../utils/post_fetch.js')
 Page({
 
   /**
@@ -11,16 +13,22 @@ Page({
     startindex:0,
     pagesize:5,
     filer_tag:[false,false,false],
-    searchtext:'游'
+    searchtext:''
   },
   tapHeart(event) {
     console.log(event.target.dataset.index);
     const searchlist = this.data.searchlist;
     if (searchlist[event.target.dataset.index].iflike) {
       searchlist[event.target.dataset.index].iflike = false;
+      post_fetch('dellike', { "userid": wx.getStorageSync("userId"), "tripid": searchlist[event.target.dataset.index].id }).then(res => {
+        console.log(res.data)
+      })
       this.setData({ searchlist });
     } else {
       searchlist[event.target.dataset.index].iflike = true;
+      post_fetch('addlike', { "userid": wx.getStorageSync("userId"), "tripid": searchlist[event.target.dataset.index].id }).then(res => {
+        console.log(res.data)
+      })
       this.setData({ searchlist });
     }
 
@@ -70,7 +78,12 @@ Page({
     })
   },
   go_search() {
-   this.tapdate();
+    if (this.data.searchtext) {
+      post_fetch('add_search_history', { "userid": wx.getStorageSync("userId"), "searchItem": this.data.searchtext }).then(res => {
+        console.log(res.data.message)
+      })
+      this.tapdate();
+    }
   },
   cleartext() {
     this.setData({ inputfocus: false }, () => {
