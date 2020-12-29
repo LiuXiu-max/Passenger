@@ -39,7 +39,7 @@
       </view>
     </view>
     <view wx:else>
-      暂无评论
+      没有更多了
     </view>
     <view class="inputback">
       <view class="commitbox">

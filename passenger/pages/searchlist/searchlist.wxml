@@ -13,7 +13,7 @@
     <view wx:if="{{listtag}}" class="searchbox" >
       <view wx:for="{{searchlist}}" wx:key="id" class="searchcard">
         
-        <view class="cardimg" style="background-image: url({{item.picUrl}})"><view class="new_imageback"><image data-index="{{index}}" bindtap="tapHeart" mode="cover" class="{{item.iflike?'heart_full':'heart'}}" src="{{item.iflike?'https://www.liuxiu.xyz/demoimage?heart_full.png':'https://www.liuxiu.xyz/demoimage?heart.png'}}"/></view></view>
+        <view class="cardimg" data-index="{{index}}" bindtap="navdetail" style="background-image: url({{item.picUrl}})"><view class="new_imageback"><image data-index="{{index}}" catchtap="tapHeart" mode="cover" class="{{item.iflike?'heart_full':'heart'}}" src="{{item.iflike?'https://www.liuxiu.xyz/demoimage?heart_full.png':'https://www.liuxiu.xyz/demoimage?heart.png'}}"/></view></view>
         <view class="cardname">{{item.name}}</view>
         <view class="detailfoot">
           <view  class="itemblock">

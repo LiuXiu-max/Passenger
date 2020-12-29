@@ -749,44 +749,6 @@ app.get('/api/getcommits/:id/:start/:end',async function(req,res){
         conn.end();
 })
 
-//发表评论
-app.post('/api/putcommits',async function(req,res){
-        let conn=consql.ConMysql('test');
-        //INSERT INTO insert_table (datetime, uid, content, type) VALUES (‘1’, ‘userid_1’, ‘content_1’, 1);
-        let sql=`insert into commits (userId,tripId,content,time,nickName,avatarUrl) VALUES('${req.body.userId}','${req.body.tripId}','${req.body.content}','${req.body.time}','${req.body.nickName}','${req.body.avatarUrl}') ;`
-        console.log(sql);
-        conn.query(sql
-        ,async function(error,result,fields){
-                if(error){
-                        res.send({result:0,message:'发表评论失败',detail:error});
-                }else{
-                        res.send({result:1,message:'发表评论成功',data:result});
-                        console.log('come up with commits success');
-                }
-        })
-        conn.end();
-})
-
-//删除评论
-app.post('/api/delcommits',async function(req,res){
-        let conn=consql.ConMysql('test');
-        let sql=`delete from commits where commId='${req.body.commId}'`
-        console.log(sql);
-        conn.query(sql
-        ,function(error,result,fields){
-                if(error){
-                        res.send({result:0,message:'服务器错误',detail:error});
-                }else if(result.affectedRows==1){
-                        res.send({result:1,message:'评论删除成功',detail:result});
-                }else if(result.affectedRows==0){
-                        res.send({result:0,message:'评论不存在',detail:result});
-                }else{
-                        res.send({result:0,message:'未知错误',detail:result});
-                }
-        })
-        conn.end();
-})
-
 //监听端口3000
 app.listen(3000,function(err){
         if(err){

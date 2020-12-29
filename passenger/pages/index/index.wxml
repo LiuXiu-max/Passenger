@@ -17,10 +17,10 @@
           <button bindtap="login" class="inputbutton">Let's</button>
         </view>
         <view class="inputbox" wx:else>
-          <input type="text" placeholder="用户名"/>
-          <input type="password" placeholder="密码"/>
-          <input type="password" placeholder="确认密码"/>
-          <button class="inputbutton">Go!</button>
+          <input bindinput="userNameChanged" type="text" placeholder="用户名"/>
+          <input bindinput="pwdChanged" type="password" placeholder="密码"/>
+          <input bindinput="cfpwdChanged" type="password" placeholder="确认密码"/>
+          <button bindtap="register" class="inputbutton">Go!</button>
         </view>
       </view>
     </view>

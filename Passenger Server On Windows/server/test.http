@@ -10,7 +10,7 @@ post {{url}}/register
 {{ctjson}}
 
 {
-    "username":"123ad1",
+    "username":"123ad",
     "psd":"123a"
 }
 
@@ -103,7 +103,7 @@ post {{url}}/addusertag
 
 {
     "userid":"1",
-    "tripid":"31281323"
+    "tripid":"31277605"
 }
 
 ###
@@ -112,7 +112,7 @@ post {{url}}/delusertag
 
 {
     "userid":"1",
-    "tripid":"31281323"
+    "tripid":"31277605"
 }
 
 
@@ -157,65 +157,3 @@ get {{url}}/imageurls/31281327
 
 ###
 get {{url}}/getimage/31281327/tripImage_0.jpg
-
-###
-post {{url}}/updatetrip
-{{ctjson}}
-
-{
-    "picUrl":"3dsfdgfgf",
-    "id":"31281324"
-}
-
-###
-post {{url}}/scan_history
-{{ctjson}}
-
-{
-    "userid":1,
-    "tripid":"31281323"
-}
-
-###
-post {{url}}/changepsd
-{{ctjson}}
-
-{
-    "id":1,
-    "oldpsd":"123",
-    "newpsd":"12"
-}
-
-###
-post {{url}}/deltrip
-{{ctjson}}
-
-{
-    "tripid":"31281329"
-}
-
-
-
-###
-post {{url}}/putcommits
-{{ctjson}}
-
-{
-    "userId":1,
-    "tripId":"31254422",
-    "content":"我想去这里",
-    "time":"2020-06-01 20:25",
-    "nickName":"坤坤",
-    "avatarUrl":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTL0tVqxVJvtia1BklEicnKSJsXMTUakbyhymYxYTCQ3ZPycapevySrpsLKLqNQdL3jgUQ1azNJTD4NA/132"
-}
-
-###
-post {{url}}/delcommits
-{{ctjson}}
-
-{
-    "comId":1
-}
-
-###
-get {{url}}/getcommits/31254422/0/10

@@ -15,6 +15,13 @@ Page({
     filer_tag:[false,false,false],
     searchtext:''
   },
+  navdetail(event) {
+    let index = event.target.dataset.index;
+    let searchlist = this.data.searchlist;
+    wx.navigateTo({
+      url: '/pages/tripdetail/tripdetail?tripId=' + searchlist[index].id,
+    })
+  },
   tapHeart(event) {
     console.log(event.target.dataset.index);
     const searchlist = this.data.searchlist;

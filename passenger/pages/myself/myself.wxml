@@ -2,10 +2,13 @@
 <view class="container">
   <view class="head">
     <view>
-      <view class="username">{{userInfo.nickName}}</view>
-      <view class="tip">查看和编辑</view>
+      <view wx:if="{{userInfo.nickName}}" class="username">{{userInfo.nickName}}</view>
+      <view wx:else class="username">{{userName}}</view>
+      <view wx:if="{{userInfo.nickName}}" class="tip">查看和编辑</view>
+      <button wx:else class="getuser" bindgetuserinfo="getUsinfo"  open-type="getUserInfo">微信登录\获取头像</button>
     </view>
-    <image class="userimage" src="{{userInfo.avatarUrl}}"/>
+    <image wx:if="{{userInfo.avatarUrl}}" class="userimage" src="{{userInfo.avatarUrl}}"/>
+    <image wx:else class="userimage" src="https://www.liuxiu.xyz/demoimage?man.png"/>
   </view>
   <view class="setlist">
     <button bindtap="changepsd" class="setitem">
@@ -16,7 +19,7 @@
         <view data-text=""  class="item_text">{{setlist[1].text}}</view>
         <image class="iconimage" src="{{setlist[1].url}}" mode="cover"/>
     </button>
-    <button class="setitem">
+    <button open-type="feedback" class="setitem">
       <view data-text="" bindtap="" class="item_text">{{setlist[2].text}}</view>
       <image class="iconimage" src="{{setlist[2].url}}" mode="cover"/>
     </button>

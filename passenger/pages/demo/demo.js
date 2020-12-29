@@ -8,6 +8,7 @@ Page({
   startPageX: 0,
   currentView: DEFAULT_PAGE,
   data: {
+    toptag:false,
     pageStart:0,
     pageEnd:5,
     userInfo: {},
@@ -15,6 +16,14 @@ Page({
     toView: `card_${DEFAULT_PAGE}`,
     list: [],
     recommendlist:[],
+    hascomm:true,
+    hasMore:true
+  },
+  totop(){
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 300
+    })
   },
   taprecomHeart(event) {
     console.log(event.target.dataset.index);
@@ -34,14 +43,18 @@ Page({
     }
   },
   onShow:function(){
-    fetch('tripslist/' + wx.getStorageSync("userId") + '/' + this.data.pageStart + '/' + this.data.pageEnd).then(res => {
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+    }
+    console.log(app.globalData.userInfo);
+    fetch('poptripslist/' + wx.getStorageSync("userId") + '/' + 0 + '/' + 5).then(res => {
       this.setData({ list: res.data.data })
       console.log(res.data.data)
     })
-    post_fetch('getrecommendlist', { "userid": wx.getStorageSync("userId"), "start": this.data.pageStart, "end": this.data.pageEnd }).then(res => {
-      this.setData({ recommendlist: res.data.data })
-      console.log(res.data.data)
-    })
+    this.loadMore()
   },
   onLoad: function () {
     if (app.globalData.userInfo) {
@@ -49,19 +62,49 @@ Page({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
+    } 
+    console.log(app.globalData.userInfo);
+  },
+  loadMore() {
+    let { pageStart, pageEnd, hasMore, hascomm ,recommendlist} = this.data;
+    console.log(pageStart + '  ' + pageEnd)
+    if (hascomm){
+      post_fetch('getrecommendlist', { "userid": wx.getStorageSync("userId"), "start": pageStart, "end": pageEnd }).then(res => {
+        if (res.data.data) {
+          console.log('获取到推荐')
+           recommendlist=recommendlist.concat(res.data.data)
+          this.setData({ recommendlist, pageStart: pageEnd + 1, pageEnd: pageEnd + 5, hasMore: true })
+        } else {
+          console.log('没有推荐')
+          fetch('tripslist/' + wx.getStorageSync("userId") + '/' + this.data.pageStart + '/' + this.data.pageEnd).then(res => {
+            if (res.data.data) {
+              recommendlist = recommendlist.concat(res.data.data)
+              this.setData({ recommendlist, pageStart: pageEnd + 1, pageEnd: pageEnd + 5, hasMore: true })
+            } else {
+              this.setData({ hasMore: false })
+            }
           })
+          this.setData({ hascomm: false })
+        }
+      })
+    }else{
+      fetch('tripslist/' + wx.getStorageSync("userId") + '/' + this.data.pageStart + '/' + this.data.pageEnd).then(res => {
+        if (res.data.data) {
+          recommendlist = recommendlist.concat(res.data.data)
+          this.setData({ recommendlist, pageStart: pageEnd + 1, pageEnd: pageEnd + 5, hasMore: true })
+        } else {
+          this.setData({ hasMore: false })
         }
       })
     }
-    console.log(this.data.userInfo);
+  },
+  onReachBottom: function () {
+    console.log('bottom')
+    //在这里加载下一页
+    //需要判断是否正在加载，否则会有多次触发问题
+    this.loadMore()
+
+
   },
   toMyself:function(){
     wx.switchTab({

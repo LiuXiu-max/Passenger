@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
       <image wx:if="{{hasUserInfo}}"  bindtap="toMyself" class="userinfo" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <image wx:else class="userinfo" src="https://www.liuxiu.xyz/demoimage?man.png" mode="cover"></image>
+      <image wx:else class="userinfo" src="https://www.liuxiu.xyz/demoimage?man.png" bindtap="toMyself" mode="cover"></image>
       <text class='demotitle'>你下次想去哪儿？</text>
   <view class="innter">
   <navigator url="/pages/searchpage/searchpage">
@@ -13,7 +13,7 @@
   </navigator>
       <view class="poptxt">最受欢迎的游记</view>
       <scroll-view class='scroll-box-pop' scroll-x scroll-with-animation>
-        <view wx:for="{{list}}" wx:key="id" class="card-box-pop" id="card_{{index}}">
+        <view wx:for="{{list}}" wx:key="index" class="card-box-pop" id="card_{{index}}">
 
           <view class="pop-card" style="background-image: url({{item.picUrl}})">
             <!-- <view class="pop-like">
@@ -32,7 +32,7 @@
   <view class="footer">
     <view class="newtxt">为您推荐</view>
     <view>
-      <view wx:for="{{recommendlist}}" wx:key="id" class="card-box-new" id="card_{{index}}">
+      <view wx:for="{{recommendlist}}" wx:key="index" class="card-box-new" id="card_{{index}}">
         <view class="new-card">
             <!-- <view>{{item}}</view> -->
           <view class="cardImg" style="background-image: url({{item.picUrl}})">            
@@ -57,6 +57,9 @@
           </navigator>
         </view>
       </view>
+      <view wx:if="{{hasMore}}">正在加载...</view>
+      <view wx:else>暂时没有更多了，多逛逛~</view>
     </view>
   </view>
+  <image class="topBut" wxif="{{toptag}}" bindtap="totop" src="https://www.liuxiu.xyz/demoimage?rising.png"></image>
 </view>

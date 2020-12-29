@@ -5,6 +5,7 @@ const post_fetch = require('../../utils/post_fetch.js')
 Page({
   data: {
     userPwd:'',
+    cfuserPwd:'',
     userName:'',
     showModalStatus:false,
     islogin:true,
@@ -59,12 +60,48 @@ Page({
       this.setData({ islogin: false });
       console.log(this.data.islogin);
   },
+  register(){
+    if(this.data.userPwd!=this.data.cfuserPwd){
+      wx.showModal({
+        title: '出问题了',
+        content: '两次密码不一致',
+        showCancel: false
+      })
+      return;
+    }
+    if (this.data.userName && this.data.userPwd && this.data.cfuserPwd) {
+      post_fetch('register', { "username": this.data.userName, "psd": this.data.userPwd }).then(res => {
+        console.log(res.data)
+        if (res.data.result) {
+          wx.setStorageSync("userId", res.data.data.insertId)
+          wx.setStorageSync("userName", this.data.userName)
+          wx.switchTab({
+            url: '../demo/demo',
+          })
+        } else {
+          wx.showModal({
+            title: '出问题了',
+            content: res.data.message,
+            showCancel: false
+          })
+        }
+      })
+      
+    } else {
+      wx.showModal({
+        title: '出问题了',
+        content: '请输入用户名和密码',
+        showCancel: false
+      })
+    }
+  },
   login(){
     if (this.data.userName && this.data.userPwd){
       post_fetch('login', { "username": this.data.userName, "psd": this.data.userPwd }).then(res => {
         console.log(res.data.message)
         if(res.data.result){
           wx.setStorageSync("userId", res.data.data)
+          wx.setStorageSync("userName", this.data.userName)
             wx.switchTab({
               url: '../demo/demo',
             })
@@ -89,7 +126,9 @@ Page({
   },
   pwdChanged(e){
     this.setData({userPwd:e.detail.value})
-  
+  },
+  cfpwdChanged(e){
+    this.setData({ cfuserPwd: e.detail.value })
   },
   onLoad: function () {
     if (app.globalData.userInfo) {
@@ -97,27 +136,8 @@ Page({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
     }
+    console.log(app.globalData.userInfo);
   },
   getUserInfo: function(e) {
 

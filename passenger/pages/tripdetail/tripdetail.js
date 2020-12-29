@@ -40,24 +40,35 @@ Page({
   },
   go_commit() {
     let commlist=this.data.commlist;
+    let comitem={};
     var date = getdate(Date.parse(new Date()));
-    let comitem = {
-      "userId": wx.getStorageSync("userId"),
-      "tripId": this.data.tripId,
-      "content": this.data.commitcon,
-      "time": date,
-      "nickName": app.globalData.userInfo.nickName,
-      "avatarUrl": app.globalData.userInfo.avatarUrl
-    };
+    if (app.globalData.userInfo){
+      comitem = {
+        "userId": wx.getStorageSync("userId"),
+        "tripId": this.data.tripId,
+        "content": this.data.commitcon,
+        "time": date,
+        "nickName": app.globalData.userInfo.nickName ,
+        "avatarUrl": app.globalData.userInfo.avatarUrl
+      };
+    }else{
+      comitem = {
+        "userId": wx.getStorageSync("userId"),
+        "tripId": this.data.tripId,
+        "content": this.data.commitcon,
+        "time": date,
+        "nickName":  wx.getStorageSync("userName"),
+        "avatarUrl": 'https://www.liuxiu.xyz/demoimage?man.png'
+      };
+    }
+   
     if (this.data.commitcon) {
       post_fetch('putcommits', comitem).then(res => {
         if (res.data.result) {
           commlist.push(comitem);
-          this.setData({commlist})
-          wx.showModal({
-            title: '提示',
-            content: res.data.message,
-            showCancel:false
+          this.setData({commlist,committag:true})
+          wx.showToast({
+            title: res.data.message,
           })
           this.setData({commitcon:''});
         } else {
@@ -88,6 +99,7 @@ Page({
       console.log(res.data.message)
     })
     list.splice(index, 1);
+    if(list.length==0){this.setData({committag:false})}
     this.setData({ commlist: list });
   },
   scopeimage(e) {

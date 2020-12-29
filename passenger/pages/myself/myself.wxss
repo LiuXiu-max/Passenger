@@ -20,6 +20,15 @@
   font-size: 40rpx;
   font-weight: bold;
 }
+.getuser{
+  line-height: 60rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  border: 1rpx red solid;
+}
+button::after{
+  border: none;
+}
 .userimage{
   height: 120rpx;
   width: 120rpx;
