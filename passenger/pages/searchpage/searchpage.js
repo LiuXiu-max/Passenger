@@ -22,6 +22,24 @@ Page({
       })
     }
   },
+  updateSearchlist(){
+    wx.setStorage({
+      data: this.data.search_history_list,
+      key: 'search_history_list',
+    })
+    console.log('search history updated')
+  },
+  go_search_Bplan(){
+    if(this.data.searchtext){
+      var oldShlist=this.data.search_history_list;
+      var newShlist=oldShlist.concat(this.data.searchtext);
+      this.setData({search_history_list:newShlist});
+      console.log(newShlist)
+      wx.navigateTo({
+        url: '../searchlist/searchlist?searchtext=' + this.data.searchtext,
+      })
+    }
+  },
   taphistory(e){
     this.setData({ searchtext: e.target.dataset.text});
   },
@@ -49,45 +67,59 @@ Page({
   inputing(e){
     this.setData({ searchtext: e.detail.value });
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  get_search_history(){
     fetch('get_search_history/' + wx.getStorageSync("userId")).then(res => {
       this.setData({ search_history_list: res.data.data })
       console.log(res.data.data)
     })
+  },
+  get_search_history_Bplan(){
+    var that=this;
+    wx.getStorage({
+      key: 'search_history_list',
+      success:function(res){
+        that.setData({search_history_list:res.data});
+        console.log(res.data)
+      }
+    })
+    console.log("get history function executed");
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.get_search_history_Bplan();
+    //console.log(typeof this.data.search_history_list)
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    fetch('get_search_history/' + wx.getStorageSync("userId")).then(res => {
-      this.setData({ search_history_list: res.data.data })
-      console.log(res.data.data)
-    })
+    // this.get_search_history()
+   //this.get_search_history_Bplan();
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    this.updateSearchlist();
+    
   },
 
   /**

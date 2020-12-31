@@ -2,7 +2,7 @@
 page{
   height: 100%;
   width: 100%;
-  background-color: #f7f7f7;
+  background-color: #fefefe;
 }
 .container {
   height: 100%;
@@ -17,6 +17,15 @@ page{
   height: 100rpx;
   margin: 35rpx 0 0 626rpx;
   border-radius: 50%;
+}
+.unUserinfo{
+  background-color: white;
+  position: relative;
+  width: 100rpx;
+  height: 100rpx;
+  margin: 35rpx 0 0 626rpx;
+  border-radius: 50%;
+  border: 1rpx solid #ccc;
 }
 .demotitle{
   position: relative;

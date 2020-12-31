@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
       <image wx:if="{{hasUserInfo}}"  bindtap="toMyself" class="userinfo" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <image wx:else class="userinfo" src="https://www.liuxiu.xyz/demoimage?man.png" bindtap="toMyself" mode="cover"></image>
+      <image wx:else class="unUserinfo" src="https://www.liuxiu.xyz/demoimage?man.png" bindtap="toMyself" mode="center"></image>
       <text class='demotitle'>你下次想去哪儿？</text>
   <view class="innter">
   <navigator url="/pages/searchpage/searchpage">

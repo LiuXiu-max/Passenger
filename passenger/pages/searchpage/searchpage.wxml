@@ -1,8 +1,8 @@
 <view>
   <view class="container">
     <view class="search_head">
-      <button bindtap="go_search" class="buttonleft" />
-      <input focus="{{inputfocus}}" confirm-type="search" bindinput="inputing" bindconfirm="go_search" value="{{searchtext}}" type="text" placeholder='想看什么样的游记？'/>
+      <button bindtap="go_search_Bplan" class="buttonleft" />
+      <input focus="{{inputfocus}}" confirm-type="search" bindinput="inputing" bindconfirm="go_search_Bplan" value="{{searchtext}}" type="text" placeholder='想看什么样的游记？'/>
       <button bindtap="cleartext" class="buttonright" style="{{searchtext==''?'visibility:hidden;':''}}" />
     </view>
     <view class="search_history">
