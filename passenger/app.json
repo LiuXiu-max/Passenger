@@ -8,8 +8,8 @@
     "pages/tripdetail/tripdetail",
     "pages/searchlist/searchlist",
     "pages/changepsd/changepsd",
-    "pages/publish/publish"
-
+    "pages/publish/publish",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -17,31 +17,31 @@
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
-    "tabBar": {
-      "color": "#999",
-      "selectedColor": "#444",
-      "backgroundColor": "#fff",
-      "borderStyle": "black",
-      "list": [
-        {
-          "pagePath": "pages/demo/demo",
-          "text": "发现",
-          "iconPath": "./images/hot.png",
-          "selectedIconPath": "./images/hot-fill.png"
-        },
-        {
-          "pagePath": "pages/mytrips/mytrips",
-          "text": "旅行",
-          "iconPath": "./images/favorites.png",
-          "selectedIconPath": "./images/favorites-fill.png"
-        },
-        {
-          "pagePath": "pages/myself/myself",
-          "text": "我的",
-          "iconPath": "./images/account.png",
-          "selectedIconPath": "./images/account-fill.png"
-        }
-      ]
-    },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#444",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/demo/demo",
+        "text": "发现",
+        "iconPath": "./images/hot.png",
+        "selectedIconPath": "./images/hot-fill.png"
+      },
+      {
+        "pagePath": "pages/mytrips/mytrips",
+        "text": "旅行",
+        "iconPath": "./images/favorites.png",
+        "selectedIconPath": "./images/favorites-fill.png"
+      },
+      {
+        "pagePath": "pages/myself/myself",
+        "text": "我的",
+        "iconPath": "./images/account.png",
+        "selectedIconPath": "./images/account-fill.png"
+      }
+    ]
+  },
   "sitemapLocation": "sitemap.json"
 }

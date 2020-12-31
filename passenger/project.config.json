@@ -1,131 +1,130 @@
 {
-	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": true,
-		"es6": true,
-		"postcss": true,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		}
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.11.1",
-	"appid": "wx04781249352ad5ab",
-	"projectname": "passenger",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"currentL": -1,
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": [
-				{
-					"id": -1,
-					"name": "demo",
-					"pathName": "pages/demo/demo",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "login",
-					"pathName": "pages/login/login",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "index",
-					"pathName": "pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "searchpage",
-					"pathName": "pages/searchpage/searchpage",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "searchlist",
-					"pathName": "pages/searchlist/searchlist",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "mytrips",
-					"pathName": "pages/mytrips/mytrips",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "myself",
-					"pathName": "pages/myself/myself",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "publish",
-					"pathName": "pages/publish/publish",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "tripdetail",
-					"pathName": "pages/tripdetail/tripdetail",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "changepsd",
-					"pathName": "pages/changepsd/changepsd",
-					"scene": null
-				}
-			]
-		}
-	}
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useMultiFrameRuntime": true,
+    "bundle": false,
+    "useApiHook": true,
+    "useApiHostProcess": false
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.11.1",
+  "appid": "wx04781249352ad5ab",
+  "projectname": "passenger",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "currentL": -1,
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "demo",
+          "pathName": "pages/demo/demo",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "login",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "searchpage",
+          "pathName": "pages/searchpage/searchpage",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "searchlist",
+          "pathName": "pages/searchlist/searchlist",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "mytrips",
+          "pathName": "pages/mytrips/mytrips",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "myself",
+          "pathName": "pages/myself/myself",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "publish",
+          "pathName": "pages/publish/publish",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "tripdetail",
+          "pathName": "pages/tripdetail/tripdetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "changepsd",
+          "pathName": "pages/changepsd/changepsd",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

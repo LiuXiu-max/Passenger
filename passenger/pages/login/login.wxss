@@ -1,0 +1,61 @@
+/* pages/login/login.wxss */
+.container{
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+.loginHead{
+  display: flex;
+  /* text-align: center; */
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100rpx;
+  height: 130rpx;
+  width: 130rpx;
+  border-radius: 50%;
+  border:1rpx solid #ccc;
+}
+.loginHead image{
+  height: 100rpx;
+  width: 100rpx;
+}
+.loginTitle{
+  margin-top: 20rpx;
+  width: auto;
+  height: 100rpx;
+  align-items: center;
+  font-size: 40rpx;
+  display: flex;
+  flex-direction: row;
+}
+.unSelected{
+  color: #ddd;
+}
+.loginTitle view{
+  padding: 100rpx;
+}
+.loginInput{
+  height: auto;
+  width: 70%;
+}
+.loginInput input{
+  margin-bottom: 10rpx;
+  height: 120rpx;
+  width: auto;
+  border-bottom:1rpx solid #ddd;
+  line-height: 120rpx;
+  font-size: 36rpx;
+  color: #000;
+}
+.butLogin{
+  width: 60%;
+  height: 100rpx;
+  margin-top: 40rpx;
+  border-radius: 50rpx;
+  border:1rpx solid #ddd;
+}

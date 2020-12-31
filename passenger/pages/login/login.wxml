@@ -1,0 +1,22 @@
+<!--pages/login/login.wxml-->
+<view class="container">
+  <view class="loginHead">
+    <image mode="cover" src="https://www.liuxiu.xyz/demoimage?man.png"></image>
+  </view>
+  <view class="loginTitle">
+    <view bindtap="tapLogin" class="{{loginSelected?'':'unSelected'}}">登录</view>|<view bindtap="tapRegister" class="{{registerSelected?'':'unSelected'}}">注册</view>
+  </view>
+  <view wx:if="{{loginSelected}}" class="loginInput">
+    <input placeholder="请输入账号" type="text" />
+    <input placeholder="请输入密码" type="password" />
+  </view>
+  <view wx:else class="loginInput">
+    <input placeholder="请输入注册账号" type="text" />
+    <input placeholder="请输入密码" type="password" />
+    <input placeholder="请再次输入密码" type="password" />
+  </view>
+  <button wx:if="{{loginSelected}}" class="butLogin" bindtap="loginAction">
+    登录
+  </button>
+  <button wx:else class="butLogin" bindtap="registerAction">注册</button>
+</view>
